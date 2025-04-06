@@ -29,7 +29,7 @@ docker-compose up -d --build
 Once the containers are running, copy the .env.example file to .env:
 
 ```bash
-docker compose exec -u 0 php /bin/sh
+docker-compose exec -u 0 php /bin/sh
 cp .env.example .env
 ```
 
