@@ -32,10 +32,8 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app/private'),
-            'serve' => true,
+            'root' => storage_path('app'),
             'throw' => false,
-            'report' => false,
         ],
 
         'public' => [
@@ -44,9 +42,68 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
-            'report' => false,
+        ],
+        'images_brand' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images_brand'),
+            'url' => env('APP_URL').'/storage/images_brand',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'images_category' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images_category'),
+            'url' => env('APP_URL').'/storage/images_category',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'images_product' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images_product'),
+            'url' => env('APP_URL').'/storage/images_product',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'main_banner' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/main_banner'),
+            'url' => env('APP_URL').'/storage/main_banner',
+            'visibility' => 'public',
+            'throw' => false,
         ],
 
+        'images_page' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images_page'),
+            'url' => env('APP_URL').'/storage/images_page',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        
+        'images_blog' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images_blog'),
+            'url' => env('APP_URL').'/storage/images_blog',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'images_author' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images_author'),
+            'url' => env('APP_URL').'/storage/images_author',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        
+        'images_site' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images_site'),
+            'url' => env('APP_URL').'/storage/images_site',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -57,7 +114,6 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
-            'report' => false,
         ],
 
     ],

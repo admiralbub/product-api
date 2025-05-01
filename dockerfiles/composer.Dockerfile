@@ -1,3 +1,3 @@
 FROM composer:latest
-WORKDIR /var/www/tz
+WORKDIR /var/www/chystagriadka
 ENTRYPOINT ["composer", "--ignore-platform-reqs"]

@@ -2,5 +2,7 @@
 
 return [
     App\Providers\AppServiceProvider::class,
-    App\Providers\RepositoryServiceProvider::class,
+    App\Providers\LanguageSwitchServiceProvider::class,
+    App\Providers\ServiceServiceProvider::class,
+    
 ];

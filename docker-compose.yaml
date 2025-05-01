@@ -6,35 +6,38 @@ services:
       - "5000:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./src:/var/www/tz
+      - ./src:/var/www/chystagriadka
     depends_on:
       - mysql
       - php
+    links:
+      - node
   php:
     build:
       context: dockerfiles
       dockerfile: php.Dockerfile
     volumes:
-      - ./src:/var/www/tz
+      - ./src:/var/www/chystagriadka
 
   composer:
     build:
       context: dockerfiles
       dockerfile: composer.Dockerfile
     volumes:
-     - ./src:/var/www/tz
+     - ./src:/var/www/chystagriadka
   artisan:
     build:
       context: dockerfiles
       dockerfile: php.Dockerfile
     volumes:
-      - ./src:/var/www/tz
-    entrypoint: ["php", "/var/www/tz/artisan"]
+      - ./src:/var/www/chystagriadka
+    entrypoint: ["php", "/var/www/chystagriadka/artisan"]
 
   mysql:
     image: mysql:8.0
     volumes:
        - database:/var/lib/mysql 
+       - ./src:/var/www/chystagriadka
     ports:
       - "3316:3306"
     env_file:
@@ -47,5 +50,13 @@ services:
     restart: always
     ports:
       - 3135:80
+  node:
+    image: node:20-alpine
+    ports:
+        - "3000:3000"
+    volumes:
+        - ./src:/var/www/chystagriadka
+    working_dir: /var/www/chystagriadka
+    tty: true
 volumes:
   database:

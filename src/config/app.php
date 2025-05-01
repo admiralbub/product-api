@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Kyiv',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,10 +78,11 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
+    'locale' => env('APP_LOCALE', 'ua'),
 
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
-
+    'email' => env('MAIL_FROM_ADDRESS'),
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'ua'),
+    
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
 
     /*
