@@ -8,6 +8,7 @@ interface BlogInterface {
     static public function blogShow();
     static public function author($authorPostId);
     static public function authorPost($authorPostId);
+    static public function blogMain();
 }
 
 ?>

@@ -1,0 +1,69 @@
+.account {
+    &-menu {
+        & li {
+            margin: 6px 0;
+            & a {
+                font-size: 16px;
+                line-height: 36px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                color: var(--black);
+                &>i {
+                    margin-right: 15px;
+                    font-size: 20px;
+                }
+                &:hover {
+                    color: var(--main-color);
+                    font-weight: 600;
+                }
+                &.active {
+                    color: var(--main-color);
+                    font-weight: 600;
+                }
+            }
+        }
+        
+    }
+   
+
+    & .account_panel {
+        border:1px solid var(--border-panel);
+        border-radius: 10px;
+        padding: 20px 30px;
+    }
+    &_heading {
+        padding: 15px 25px;
+        background-color: var(--heading-panel);
+    }
+    & .status_deliver {
+        background: var(--status_success);
+        width: 16px;
+        height: 16px;
+        border-radius: 50px;
+        position: absolute;
+        top: 17px;
+        left: 17px;
+        &.default {
+            background: var(--gray2);
+        }
+        &.work {
+            background: var(--work);
+        }
+        &.to_pay {
+            background-color: var(--gold);
+        }
+        &.success_pay {
+            background-color: var(--main_grain_hover);
+        }
+        &.success {
+            background: var(--status_success);
+        }
+        &.cancel {
+            background: var(--danger);
+        }
+       
+    }
+
+   
+}

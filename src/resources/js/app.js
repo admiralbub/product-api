@@ -15,7 +15,7 @@ const button_submenu_mob = document.querySelectorAll('.button-submenu_click');
 
 
 
-const quantity = document.querySelector('.quantity');
+//const quantity = document.querySelector('.quantity');
 
 
 
@@ -54,52 +54,8 @@ button_submenu_mob.forEach(button => {
     });
 });
 //Fixed desctop navbar
-window.onscroll = function() {
-    const floatingElementDesc = document.querySelector(".catalog");
-    
-    if (window.scrollY > 100) { // Scroll position threshold
-        floatingElementDesc.classList.add("fixed_header"); // Hide the element
-    } else {
-        if(floatingElementDesc.classList.contains("fixed_header")) {
-            floatingElementDesc.classList.remove("fixed_header"); // Hide the element
-        }
-        
-    }
-    const fixednavasctive = document.querySelector(".fixed_header");
-    
-    if (window.scrollY > 200) { // Scroll position threshold
-        fixednavasctive.classList.add("visible"); // Show the element
-    } else {
-        if(floatingElementDesc.classList.contains("fixed_header")) {
-            fixednavasctive.classList.remove("visible"); // Hide the element
-        }
-       
-    }
-    const floatingElementMob = document.querySelector(".header-mob");
-    
-    if (window.scrollY > 100) { // Scroll position threshold
-        floatingElementMob.classList.add("fixed_header_mob"); // Hide the element
-        floatingElementMob.classList.remove("mt-2"); // Hide the element
-    } else {
-        if(floatingElementMob.classList.contains("fixed_header")) {
-            floatingElementMob.classList.remove("fixed_header_mob"); // Hide the element
-            floatingElementMob.classList.add("mt-2"); // Hide the element
-        }
-        
 
-    }
-    const fixednavasctiveMob = document.querySelector(".fixed_header_mob");
-    
-    if (window.scrollY > 200) { // Scroll position threshold
-        fixednavasctiveMob.classList.add("visible"); // Show the element
-    } else {
-        if(floatingElementMob.classList.contains("fixed_header")) {
-            fixednavasctiveMob.classList.remove("visible"); // Hide the element
-        }
-    }
-        
-};
-if(quantity) {
+/*if(quantity) {
     //Увеличить количество товара
     quantity.onclick = function(event) {
         if (event.target.closest('.minus')) {
@@ -123,12 +79,33 @@ if(quantity) {
             document.querySelector('#quantity-input').value =qty.value;
         }
     }
-}
+}*/
+document.addEventListener('DOMContentLoaded', function() {
+    const display = document.querySelector('.quantity-controls__display');
+    if(display) {
+        const incrementBtn = document.querySelector('.quantity-controls__controls .increment');
+        const decrementBtn = document.querySelector('.quantity-controls__controls .decrement');
+        let count = 1;
+        
+        incrementBtn.addEventListener('click', function() {
+            count++;
+            display.value = count;
+        });
+        
+        decrementBtn.addEventListener('click', function() {
+            if (count > 1) {
+                count--;
+                display.value = count;
+            }
+        });
+    }
+});   
 if(search_mob) {
     search_mob.addEventListener('input', function() {
         const asyncSearchProductMob = async () => {
             try {
-                const response = await axios.post('/'+document.documentElement.getAttribute('lang')+'/search_ajax', {
+                const lang = document.documentElement.getAttribute('lang') === 'ru' ? '/ru' : '';
+                const response = await axios.post(lang + '/search_ajax', {
                     query: this.value,
                 });
                 if(response['data'].length != 0) {
@@ -168,7 +145,11 @@ if(search_mob) {
                 </div>
                 <div class="px-3 py-1">
                     ${pr.name}
+                    <div class="py-1">
+                        <span class="fw-bold">${pr.price} грн.</span>
+                    </div>
                 </div>
+              
             </a>
         </div>`
     }
@@ -177,10 +158,12 @@ if(search_mob) {
 
 
 if(search_descktop) {
+    console.log(document.documentElement.getAttribute('lang'))
     search_descktop.addEventListener('input', function() {
         const asyncSearchProductDescktop = async () => {
             try {
-                const response = await axios.post('/'+document.documentElement.getAttribute('lang')+'/search_ajax', {
+                const lang = document.documentElement.getAttribute('lang') === 'ru' ? '/ru' : '';
+                const response = await axios.post(lang + '/search_ajax', {
                     query: this.value,
                 });
                 if(response['data'].length != 0) {
@@ -220,13 +203,28 @@ if(search_descktop) {
                 </div>
                 <div class="px-3 py-1">
                     ${pr.name}
+                    <div class="py-1">
+                        <span class="fw-bold">${pr.price} грн.</span>
+                    </div>
                 </div>
+                
             </a>
         </div>`
     }
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    const navbar = document.querySelector(".navbar-menu");
+    const stickyOffset = navbar.offsetTop;
 
+    window.addEventListener("scroll", function () {
+        if (window.scrollY > stickyOffset) {
+            navbar.classList.add("sticky-header");
+        } else {
+            navbar.classList.remove("sticky-header");
+        }
+    });
+});
 
 //////
 
@@ -241,6 +239,6 @@ import './mask.js'
 import './wislist.js'
 import './compare.js'
 import './rateInf.js'
-
+import './dunamic_load.js'
 import './validation.js'
 

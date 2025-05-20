@@ -4,15 +4,15 @@
     :keywords="$brand->meta_keywords_parse ? $brand->meta_keywords_parsed : $brand->meta_keywords"
     :no_index=0>
 
-    <div class="show_brand container py-2">
-        <x-breadcrumbs :breadcrumbs="$breadcrumbs"></x-breadcrumbs>
+    <x-block.hero :h1="$brand->h1_parsed ? $brand->h1_parsed : $brand->h1" :breadcrumbs="$breadcrumbs"></x-x-block.hero>
+
+    <div class="show_brand container py-5">
         <div class="row ">
             <div class="col col-lg-3 show_brand_img">
                 <img src="{{asset($brand->images)}}">
             </div>
             <div class="col col-lg-9">
-                <h1 class="fs-2">{{$brand->h1_parsed ? $brand->h1_parsed : $brand->h1}}</h1>
-                <div class="mt-4">
+                <div class="mt-4 page_description">
                      {!! $brand->description !!}
                 </div>
                 <div class="mt-4">

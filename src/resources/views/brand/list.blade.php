@@ -4,20 +4,12 @@
     :keywords="''"
     no_index=0>
 
-
+    <x-block.hero :h1="__('Brand')" :breadcrumbs="$breadcrumbs"></x-x-block.hero>
     <div class="container py-2">
-        <x-breadcrumbs :breadcrumbs="$breadcrumbs"></x-breadcrumbs>
-        <div class="row">
-            <h1 class="fs-2">{{__('Brand')}}</h1>
-        </div>
+        
         <div class="row brands mt-5">
             @foreach($brands as $brand)
-                <div class="brand col-xs-12 col-lg-4">
-                    <a href="{{route('product.brand.show',['slug'=>$brand->slug])}}">
-                        <img src="{{asset($brand->images)}}" alt="">
-                    </a>
-                    
-                </div>
+                <x-brand.list :brand="$brand"/>
             @endforeach
         </div>
         <div class="mt-3">

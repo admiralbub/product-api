@@ -7,8 +7,10 @@
     :descriptions="''"
     :keywords="''"
     no_index=1>
-    <div class="container mb-5 mt-5 ">
-        <h1 class="fs-3">{{__('Placing an order')}}</h1>
+
+    <x-block.hero :h1="__('Placing an order')" :breadcrumbs="$breadcrumbs"></x-x-block.hero>
+    <div class="container mb-5 mt-5">
+
         <div class="row mt-5">
             <div class="col-12 col-lg-8">
                 <div class="orders">
@@ -60,14 +62,21 @@
 
                                 </div>
                             </div>  
-                            
+                            <div class="mt-3 row">
+                                <label class="col-sm-3 col-form-label font-size-xs text-uppercase font-weight-medium text-dark text-ls mb-0">{{__('Promocode')}}</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="" name="promocode" value="">
+
+
+                                </div>
+                            </div> 
                             <div class="mt-3 row mb-3">
                                 <label class="col-sm-3 col-form-label font-size-xs text-uppercase font-weight-medium text-dark text-ls mb-0">{{__('Notes to the order')}}</label>
                                 <div class="col-sm-9">
                                     <textarea data-require="true" data-max="256"  class="form-control" name="notes_order" id="notes_order" rows="2"></textarea>
                                 </div>
                             </div> 
-                           
+                          
                            
                         </div>
                         

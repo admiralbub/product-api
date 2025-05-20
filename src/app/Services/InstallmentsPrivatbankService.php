@@ -43,7 +43,7 @@ class InstallmentsPrivatbankService implements InstallmentsPrivatbankInterface {
             "total"=>number_format($total, 2, '.', ''),
             "count_pay"=>$request->credit_PP ? $request->count_PP : $request->count_II,
             "merchantType"=>$installment_type,
-            "redirectUrl"=>"",
+            "redirectUrl"=>route('thanks.buy',$order->id),
             "responseUrl" =>route("paymentinstallmentsCallback"),
             "password"=>payment_providers('store_id_installment_privatbank'),
             "storeId"=>payment_providers('password_installment_privatbank')

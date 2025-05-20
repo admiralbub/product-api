@@ -1,229 +1,105 @@
 @import 'color';
 .stocks {
-	margin-top:40px;
-	& .stocks_item {
-		margin-top:50px;
-		margin-bottom:250px;
-		display:flex;
-		-webkit-box-orient: horizontal;
-	    -webkit-box-direction: normal;
-	    -ms-flex-direction: row;
-	    flex-direction: row;
-	    -webkit-box-pack: start;
-	    -ms-flex-pack: start;
-	    justify-content: flex-start;
-	    -ms-flex-wrap: wrap;
-	    flex-wrap: wrap;
-		& .stocks_block {
-			width: 100%;
-    		margin-right: 40px;	
-    		margin-bottom:50px;
-			border-radius:5px;
-			    width: 375px;
-			& img {
-				width:100%;
-			}
-			& .stocks_date {
-			    color:var(--green_link);
-			    margin-top:17px;
-			    padding:0px 20px;
-				font-weight: 600;
-				& span {
-					font-size: 14px;
-					& img {
-						width:18px;
-					}
-				}
-
-			}
-			& .stocks_text {
-                padding-top: 15px;;
-                & a {
-                    font-weight:500;
-                    color:var(--black);
-                    margin-top:15px;
-                    font-size: 21px;
-                    padding:0px 20px;
-                }
-			    
-                
-			   
-			}
-			& .date_last-stock {
-			    color:var(--border-action);
-				font-size: 12px;
-			    margin-top:15px;
-				font-size: 12px;
-			    margin-bottom:30px;
-			    padding:0px 20px;
-				& span {
-					border-radius: 20px;
-					border: 1px solid var(--status_success);
-					padding: 4px 16px;
-                    color: var(--status_success);
-                    font-weight: 600;
-				}
-			}
-		}
+	background-color: var(--white);
+	& .card {
+        border:0;
+        box-shadow: 0 2px 14px var(--border-card);
+        &-img {
+            position: relative;
+            height: 300px;
+            cursor: pointer;
+            margin: 0 auto;
+            padding-top: 30px;
+            & img {
+                width: 100%;
+                height: 100%;
+                -o-object-fit: cover;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            
+            }
+        }
+    }
+	& .date-badge {
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--primary-color);
+        color: var(--white);
+        padding: 10px 32px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        white-space: nowrap;
+        
+    }
+  
+    & .card-title {
+        font-size: 1.6rem;
+        line-height: 1.4;
+    }
+}
+.hero-section {
+	position: relative;
+	
+	img {
+		width: 100%;
+		height: auto;
+		border-radius: var(--border-radius);
+		object-fit: cover;
 	}
 }
-.stocks_page {
-	margin-bottom:60px;
-	& .stocks_info {
-		margin-top:50px;
-		display:flex;
-		&_image {
-			& img {
-				width: 520px;
-			}
-		}
-		
-		& .stocks_info_text {
-		
-			border-radius:5px;
-			padding:30px 35px;
-			width: 100%;
-			& .stocks_info_date {
-				margin-bottom:15px;
-				margin-top:15px;
-				color:var(--status_success);
-				font-weight:700;
-			}
-			& .stocks_info_heading {
-				margin-bottom:15px;
-				margin-top:15px;
-			}
-			& .stocks_info_post {
-				margin-bottom:15px;
-				margin-top:15px;
-				font-weight:500;
-			}
-			& .stocks_timer_date {
-				margin-bottom:15px;
-				margin-top:15px;
-				color:var(--status_success);
-				font-weight:500;
-				& span {
-					border-radius: 20px;
-					border: 1px solid var(--status_success);
-					padding: 4px 16px;
-				}
-			}
-		}
-	}
-	& .stocks_about {
-		line-height:30px;
-		margin-top:35px;
-		font-weight:600;
-	}
-	& .stocks_info2 {
-		display:flex;
-		margin-top:65px;
 
-		& .stocks_info2_text {
-			margin-left:40px;
-			margin-top:20px;
-
-			& p {
-				margin-top:25px;
-				line-height:30px;
-				font-weight:500;
-			}
-		}
+.main-content {
+	padding: 2rem 0;
+	
+	h1 {
+		font-weight: 700;
+		margin-bottom: 1.5rem;
+		color: var(--highlight-color);
 	}
-	& .whaitIs {
-		margin-top:55px;
-		text-align:center;
-		& .whaitIs_block {
-			margin-top:30px;
-			&_heading {
-			   margin-top:5px;
-			   margin-bottom:30px;
-			   font-weight:600;
-			}
-			
-		}
+	
+	p {
+		color: var(--secondary-color);
+		margin-bottom: 1.5rem;
+	}
+	
+	.biophilia {
+		font-weight: 600;
+		color: var(--highlight-color);
+		margin: 2rem 0 1rem;
+	}
+}
+
+.info-card {
+	background-color: var(--card-bg);
+	border-radius: var(--border-radius);
+	box-shadow: var(--shadow);
+	padding: 1.5rem;
+	
+	.section-title {
+		font-size: 1rem;
+		color: var(--muted-color);
+		font-weight: 500;
+		margin-bottom: 0.5rem;
+	}
+	
+	.section-content {
+		font-weight: 600;
+		color: var(--highlight-color);
+		margin-bottom: 0.7rem;
+	}
+	
+	.divider {
+		height: 1px;
+		background-color: var(--border-color);
+		margin: 1rem 0;
 	}
 	
 }
-.stocks_page {
-	margin-bottom:60px;
-	& .stocks_info {
-		margin-top:50px;
-		display:flex;
-		&_image {
-			& img {
-				width: 520px;
-			}
-		}
-		
-		& .stocks_info_text {
-		
-			border-radius:5px;
-			padding:30px 35px;
-			width: 100%;
-			& .stocks_info_date {
-				margin-bottom:15px;
-				margin-top:15px;
-				color:var(--status_success);
-				font-weight:700;
-			}
-			& .stocks_info_heading {
-				margin-bottom:15px;
-				margin-top:15px;
-			}
-			& .stocks_info_post {
-				margin-bottom:15px;
-				margin-top:15px;
-				font-weight:500;
-			}
-			& .stocks_timer_date {
-				margin-bottom:15px;
-				margin-top:15px;
-				color:var(--status_success);
-				font-weight:500;
-				& span {
-					border-radius: 20px;
-					border: 1px solid var(--status_success);
-					padding: 4px 16px;
-				}
-			}
-		}
-	}
-	& .stocks_about {
-		line-height:30px;
-		margin-top:35px;
-		font-weight:600;
-	}
-	& .stocks_info2 {
-		display:flex;
-		margin-top:65px;
 
-		& .stocks_info2_text {
-			margin-left:40px;
-			margin-top:20px;
-
-			& p {
-				margin-top:25px;
-				line-height:30px;
-				font-weight:500;
-			}
-		}
-	}
-	& .whaitIs {
-		margin-top:55px;
-		text-align:center;
-		& .whaitIs_block {
-			margin-top:30px;
-			&_heading {
-			   margin-top:5px;
-			   margin-bottom:30px;
-			   font-weight:600;
-			}
-			&_text {
-				
-			}
-		}
-	}
-	
+.highlight-text {
+	background-color: var(--highlight-bg);
+	padding: 0 3px;
 }

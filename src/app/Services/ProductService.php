@@ -235,18 +235,38 @@ class ProductService implements ProductInterface {
         return Product::where('name_'.app()->getLocale(), 'LIKE', "%{$search}%")->paginate(20);
     }
     public function searchProductAjax($search) {
-        $products = Product::where('name_'.app()->getLocale(), 'LIKE', "%{$search}%")->published()->get();
-        $output = "";
-        $searchArray = [];
-        foreach ($products as $sea) {
-            $searchArray[] = [
-                'slug'=>$sea->slug,
-                'image'=>$sea->image,
-                'name'=>$sea->name,
+
+        // Ограничим выборку только нужными полями и предзагрузим связанные данные с выборкой минимального объема
+        $localeColumn = 'name_' . app()->getLocale();
+
+        $products = Product::select('id','name_' . app()->getLocale(), 'slug', 'image','price', $localeColumn)
+            ->where($localeColumn, 'LIKE', "%{$search}%")
+            ->published()
+            ->with(['packs' => function($query) {
+                $query->select('packs.id', 'volume');
+            }])
+            ->limit(20) // ограничим количество результатов для скорости
+            ->get();
+
+        $searchArray = $products->map(function ($product) use ($localeColumn) {
+            $volume = $product->packs->count() > 0 ? $product->packs->first()->volume : 1;
+
+            return [
+                    'slug' => $product->slug,
+                    'image' => $product->image,
+                    'name' => $product->name,
+                    'price' => $product->price * $volume,
             ];
-        }
+        });
+
         return $searchArray;
 
+    }
+    public function loadDunamicProduct($skip, $limit) {
+        return Product::query()
+            ->skip($skip)
+            ->take($limit)
+            ->get();
     }
   
 }

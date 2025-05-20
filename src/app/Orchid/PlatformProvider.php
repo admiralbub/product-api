@@ -34,12 +34,31 @@ class PlatformProvider extends OrchidServiceProvider
     public function menu(): array
     {
         return [
+            Menu::make(__('Dashboard'))
+                ->icon('bs.graph-up')
+                ->route('platform.main')
+                ->permission('platform.systems.users'),
             Menu::make(__('Turn around to the store'))->icon('bs.layers')->url('/'),
             
+
             Menu::make(__('Order'))
                 ->icon('bs.currency-exchange')
                 ->route('platform.order.list')
-                ->permission('platform.systems.users'),   
+                ->permission('platform.systems.users'),  
+            Menu::make(__('FOUND CHEAPER'))
+                ->icon('bs.search')
+                ->route('platform.found_cheapers.list')
+                ->permission('platform.systems.users'),  
+            
+            Menu::make(__('Basket'))
+                ->icon('bs.basket')
+                ->route('platform.baskets.list')
+                ->permission('platform.systems.users'),  
+                
+            Menu::make(__('Promocodes'))
+                ->icon('bs.star-fill')
+                ->route('platform.promocodes.list')
+                ->permission('platform.systems.users'), 
             Menu::make(__('Products'))
                 ->icon('bs.cart')
                 ->list([
@@ -102,7 +121,11 @@ class PlatformProvider extends OrchidServiceProvider
                 ->route('platform.systems.users')
                 ->permission('platform.systems.users'),
                 
-           
+            Menu::make(__('Ban users'))
+                ->icon('bs.ban')
+                ->route('platform.ban_users.list')
+                ->permission('platform.systems.users')
+                ->divider(),    
             Menu::make(__('Roles'))
                 ->icon('bs.shield')
                 ->route('platform.systems.roles')

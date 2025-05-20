@@ -3,11 +3,12 @@
     :descriptions="$page->meta_description"
     :keywords="$page->meta_keywords"
     no_index=0>
-    <div class="container py-2">
-        <x-breadcrumbs :breadcrumbs="$breadcrumbs"></x-breadcrumbs>
-        <h1 class="fs-3">{{ $page->h1 }}</h1>
-        <div class="row mt-4 mb-4">
-            <div class="col-12 col-lg-8">
+    <x-block.hero :h1="$page->h1" :breadcrumbs="$breadcrumbs"></x-x-block.hero>
+    <div class="container py-2 ">
+        
+        
+        <div class="row mt-4 mb-4 ">
+            <div class="col-12 col-lg-8 page_description">
                 {!! preg_replace('#<h1([^>]*)>(.*)</h1>#m','<h2$1>$2</h2>', $page->description) !!}
             </div>
             <div class="col-12 col-lg-4">

@@ -13,6 +13,9 @@ class BlogService implements BlogInterface {
     static public function blogShow() {
         return Post::available()->with('author')->first();
     }
+    static public function blogMain() {
+        return Post::available()->orderBy('id','DESC')->with('author')->limit(3)->get();
+    }
     static public function author($authorPostId) {
         return AuthorPost::where('id', $authorPostId)->available()->first();
     }

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\NpCity;
-use Illuminate\Support\Facades\Log; 
+use Illuminate\Support\Facades\Log;
 class FetchCityNpJob implements ShouldQueue
 {
     use Queueable;
@@ -30,8 +30,8 @@ class FetchCityNpJob implements ShouldQueue
             "modelName" => "Address",
             "calledMethod" => "getCities",
             'methodProperties' => [
-                'Page' => $this->page,
-                'Limit' => $perPage,
+                'Page' => "".$this->page."",
+                'Limit' => "".$perPage."",
             ]
             
         ]);

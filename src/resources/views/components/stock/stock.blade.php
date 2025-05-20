@@ -1,28 +1,24 @@
-<div class="stocks_block">
-    <a href="{{route('stock.show',['slug'=>$stock->slug])}}">
-        <img src="{{asset($stock->img)}}">
-    </a>
-    <div class="stocks_date">
-        
-        <span>
-            <i class="bi bi-calendar"></i>
-            {{dateBetween($stock->start_stocks_date, $stock->end_stocks_date, $lang)}}
-        </span>
+<div class="col-md-3">
+    <div class="card h-100">
+        <div class="position-relative">
+            <div class="card-img">
+                <a href="{{route('stock.show',['slug'=>$stock->slug])}}">
+                    <img src="{{asset($stock->img)}}" class="card-img-top">
+                </a>
+                
+            </div>
+            <span class="date-badge">
+                <i class="bi bi-clock me-1"></i>
+                {{dateBetween($stock->start_stocks_date, $stock->end_stocks_date, $lang)}}
+            </span>
+        </div>
+        <div class="card-body text-center">
+           
+            <h5 class="card-title fw-bold">
+                <a href="{{route('stock.show',['slug'=>$stock->slug])}}" class="blog-title py-3">
+                    {{$stock->name}}
+                </a>
+            </h5>
+        </div>
     </div>
-    <div class="stocks_text"> 
-        <a href="/stock/{{$stock->slug}}">
-            {{$stock->name}}
-        </a>
-    </div>
-    <div class="date_last-stock">
-        <span>
-            @if(lastDay($stock->start_stocks_date, $stock->end_stocks_date) > 0)
-                {{ __("left_time") }} {{ lastDay($stock->start_stocks_date, $stock->end_stocks_date) }} {{ __("days_stock") }}
-            @elseif(lastDay($stock->start_stocks_date, $stock->end_stocks_date) === 0)
-                {{ __("left_time") }} {{ lastDay($stock->start_stocks_date, $stock->end_stocks_date)->diffInHours($end_date, false) }} {{ __("hours_title") }}
-            @else
-                {{ __("expired_title") }} <!-- Например, "Акция завершена" -->
-            @endif
-        </span>
-    </div>
- </div>
+</div>

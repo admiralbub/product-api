@@ -355,8 +355,7 @@
            "<li>- cторінку було переміщено, видалено або перейменовано;</li>",
            "<li>- ви ввели недійсну адресу;</li>",
            "<li>- виникли деякі проблеми на самому сайті.</li>",
-        "</ul>",
-        "<a href='/'><strong>Перейти на головну</strong></a>"
+        "</ul>"
     ],
     "You have successfully added the product to your compare.": "Ви успішно додали товар у порівняння.",
     "The item has already been added to your compare list.": "Цей товар уже додано до вашого списку порівняння.",
@@ -478,7 +477,39 @@
     "ЄДРПОУ":"Код ЄДРПОУ",
     "Full name of the legal entity":"Повна назва юридичної особи",
     "full name":"ПІБ",
-    "TIN":"ІНН"
+    "TIN":"ІНН",
+    "Article":"Статті",
+    "Purchased":"Куплено",
+    "Show more":"Показати ще",
+    "Promocodes":"Промокоди",
+    "Promocode":"Промокод",
+    "Fixed amount": "Фіксована сума",
+    "Percentage discount": "Відсоткова знижка",
+    "Free delivery": "Безкоштовна доставка",
+    "A gift when ordering": "Подарунок при замовленні",
+    "Total with Promocode":"Сума з промокодом",
+    "Type promocode":"Тип промокода",
+    "Gift":"Подарунок",
+    "thanks_order":"Дякую за замовлення",
+    "number_order_thanks":"Номер замовлення",
+    "thanks_order_text":"Ваше замовлення буде оброблено автоматично, в разі необхідності з вами зв'яжеться менеджер.",
+    "Minimum order amount for activation":"Мінімальна сума замовлення для активації",
+    "Unfortunately you entered the wrong promo code":"На жаль ви ввели не вірний промокод.",
+    "Start date activation":"Дата початку активації",
+    "End date activation": "Кінцева дата активації",
+    "summ_thanks_order_text":"Сума",
+    "Found this product cheaper":"Знайшли даний товар дешевше?",
+    "FOUND CHEAPER":"Знайшли дешевше?",
+    "Found product title":[
+        "<strong>Ми гарантуємо низьку ціну!</strong>",
+        "<br>",
+        "Якщо ви знайшли ціну нижче в інших магазинах, повідомте нам про це, і ми постараємося зробити приємну знижку."
+    ],
+    "Url found product":"Посилання на товар в інтернеті",
+    "add_form":"Ви успішно відправили форму",
+    "Ban users":"Бан користувачів",
+    "Unfortunately you are unable to fulfill the order. Please contact the site administrator.":"На жаль ви не можете виконати замовлення. Зверніться до адміністратора сайту."
+
 
 
 

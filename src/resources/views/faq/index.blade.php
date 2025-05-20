@@ -4,10 +4,9 @@
     :keywords="''"
     no_index=0>
 
+    <x-block.hero :h1="__('Faq')" :breadcrumbs="$breadcrumbs"></x-x-block.hero>
     <div class="container">
-        <x-breadcrumbs :breadcrumbs="$breadcrumbs"></x-breadcrumbs>
         <div class="mt-3 mb-5">
-            <h1 class="fs-2">{{__('Faq')}}</h1>
             <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
                 @foreach($faqs as $faq)
                     <div class="accordion-item">

@@ -55,6 +55,7 @@
     "Wholesale prices":"Оптовые цены",
     "Wholesale from 5 piece":"Опт от 5 штук",
     "Wholesale from 20 pieces":"Опт от 20 штук",
+    "Purchased":"Куплено",
     "Wholesale price per liter":"Оптовая цена за литр",
     "Wholesale purchase from liter":"Опт при покупке от литра",
     "Wholesale price per kg, bag, ton":"Оптовая цена за кг, мешок, тонна",
@@ -82,6 +83,9 @@
     "lastName_title":"Фамилия",
     "MiddleName_title":"Отчество",
     "Author blog":"Автор блога",
+    "thanks_order":"Спасибо за заказ",
+    "number_order_thanks":"Номер заказа",
+    "thanks_order_text":"Ваш заказ будет обработан автоматически, при необходимости с вами свяжется менеджер.",
     "All articles by the author":"Все статьи от автора",
     "Blog author":"Автора блога",
     "Name of Author":"ФИО Автора",
@@ -176,6 +180,7 @@
     "Turn around to the store":"Вернуться в магазин",
     "Success":"Успех",
     "You have successfully added the product to your cart.":"Вы успешно добавили товар в корзину.",
+    "add_form":"Вы успешно отправили форму",
     "Basket":"Корзина",
     "Quantity":"Количество",
     "Marketing services":"Маркетинговые услуги",
@@ -199,8 +204,7 @@
             "<li>- страница была перемещена, удалена или переименована;</li>",
             "<li>- вы ввели недействительный адрес;</li>",
             "<li>- возникли некоторые проблемы на самом сайте.</li>",
-         "</ul>",
-         "<a href='/'><strong>Перейти на главную</strong></a>"
+         "</ul>"
     ],
     "You have successfully added the product to your compare.":"Вы успешно добавили товар в сравнение.",
     "The item has already been added to your compare list.":"Этот товар уже добавлен в ваш список сравнения.",
@@ -304,9 +308,35 @@
     "Current account for individuals": "Расчетный счет для физ.лиц",
     "ЄДРПОУ":"Код ЄДРПОУ",
     "full name":"ФИО",
+    "Show more":"Показать еще",
+    "Promocodes":"Промокоды",
+    "Promocode":"Промокод",
     "TIN":"ИНН",
+    "Gift":"Подарок",
+    "Article":"Статьи",
+    "Fixed amount":"Фиксированная сумма",
+    "Percentage discount":"Процентная скидка",
+    "Free delivery":"Бесплатная доставка",
+    "A gift when ordering":"Подарок при заказе",
+    "Total with Promocode":"Сумма с промокодом",
+    "Type promocode":"Тип промокода",
+    "Start date activation":"Дата начала активации",
+    "End date activation":"Дата окончания активации",
     "Full name of the legal entity":"Полное название юридического лица",
-    "Filter_title_value":"Если у Вас ссылка вида «https://growex.market/ru/products/zasobi-zahistu-roslin-zzr/analog-12», то нужно убрать языковой префикс «/ru/» из ссылки"
+    "Minimum order amount for activation":"Минимальная сумма заказа для активации",
+    "Unfortunately you entered the wrong promo code":"К сожалению вы ввели не верный промокод.",
+    "summ_thanks_order_text":"Сумма",
+    "Filter_title_value":"Если у Вас ссылка вида «https://growex.market/ru/products/zasobi-zahistu-roslin-zzr/analog-12», то нужно убрать языковой префикс «/ru/» из ссылки",
+    "Found this product cheaper":"Нашли данный товар дешевле?",
+    "FOUND CHEAPER":"Нашли дешевше?",
+    "Found product title":[
+         "<strong>Мы гарантируем низкую цену!</strong>",
+         "<br>",
+         "Если вы нашли цену ниже в других магазинах, сообщите нам об этом, и мы постараемся сделать приятную скидку."
+    ],
+    "Url found product":"Ссылка на товар в интернете",
+    "Ban users":"Бан пользователей",
+    "Unfortunately you are unable to fulfill the order. Please contact the site administrator.":"К сожалению вы не можете выполнить заказ. Обратитесь к администратору сайта."
     
     
 

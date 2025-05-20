@@ -64,6 +64,14 @@ use App\Services\PaymentMethodService;
 use App\Interfaces\InstallmentsPrivatbankInterface;
 use App\Services\InstallmentsPrivatbankService;
 
+use App\Interfaces\TelegramNotificationInterface;
+use App\Services\TelegramNotificationService;
+
+
+use App\Interfaces\PromoCodeInterface;
+use App\Services\PromoCodeService;
+
+
 class ServiceServiceProvider extends ServiceProvider
 {
     /**
@@ -79,6 +87,26 @@ class ServiceServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        /*$this->app->bind(
+            OrderConfirmInterface::class,
+            OrderConfirmService::class,
+
+        );*/
+
+        $this->app->bind(
+            PromoCodeInterface::class,
+            PromoCodeService::class,
+
+        );
+
+
+        $this->app->bind(
+            TelegramNotificationInterface::class,
+            TelegramNotificationService::class,
+
+        );
+
+
         $this->app->bind(
             InstallmentsPrivatbankInterface::class,
             InstallmentsPrivatbankService::class,

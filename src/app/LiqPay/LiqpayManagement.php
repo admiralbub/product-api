@@ -13,7 +13,7 @@ class LiqpayManagement {
             'currency' => "UAH", 
             'description' => "Сплата за  замовлення  №".$order_id, 
             'order_id' => $order_id,
-            'result_url'=>'', 
+            'result_url'=>route('thanks.buy',$order_id), 
             'server_url'=> route('liqpay.callback_liqpay',$order_id)
         );
         $log = new DailyLogger(
@@ -36,15 +36,14 @@ class LiqpayManagement {
         return  $signature;
     }
     public function callback_liqPay($id,$data) {
-        $log = new DailyLogger(
+        
+        $log = new DailyLogger( 
             mb_convert_encoding(json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), 'UTF-8'),
             storage_path('log/liqpay/liqpay_callback'),
             "api"
 
         );
         $log->log();
-
-
 
         $params = json_decode(base64_decode($data), true);
         $sign_string  =payment_providers('private_key_liqpay').$data.payment_providers('private_key_liqpay');

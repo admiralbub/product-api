@@ -35,6 +35,7 @@ class DeliverOptionListener extends Listener
         return [
             Layout::rows([
                 Select::make('deliver.type')
+                    ->empty("No value")
                     ->fromEnum(TypeDeliver::class,'getDescription')
                     ->title(__('Type')),    
 

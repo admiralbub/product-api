@@ -1,9 +1,13 @@
-.blogs {
-    & .blog {
+.news-section {
+    background-color: var(--white);
+    
+    & .card {
+        border:0;
+        box-shadow: 0 2px 14px var(--border-card);
         &-img {
             position: relative;
-            width: 100%;
-            height: 100%;
+            /*width: 150px;
+            height: 200px;*/
             cursor: pointer;
             margin: 0 auto;
             padding-top: 30px;
@@ -13,46 +17,218 @@
                 -o-object-fit: cover;
                 object-fit: cover;
                 transition: transform 0.5s ease;
+            
             }
         }
-        &  a{
-            color: var(--black);
-            font-size: 22px;
-            font-weight: 700;
-            &:hover {
-                color: var( --hover-navber);
-            }
-        }
+    }
+    & .blog-subtitle {
+        color: var(--yellow);
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+  
+    & .date-badge {
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--primary-color);
+        color: var(--white);
+        padding: 10px 32px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        white-space: nowrap;
+        
+    }
+  
+    & .card-title {
+        font-size: 1.6rem;
+        line-height: 1.4;
+    }
+  
+    & .meta i {
+        color: var(--yellow);
     }
 }
-.blog_show {
-    &-img {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-        margin: 0 auto;
-        padding-top: 30px;
-        & img {
+.blog-post {
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+  
+    .featured-image {
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+    
+        img {
             width: 100%;
-            height: 100%;
-            -o-object-fit: cover;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-    }
-    & .blog_author {
-        &_name {
-            & a {
-                font-size: 20px;
-                color: var(--black);
-                font-weight: 600;
-                &:hover {
-                    color: var( --hover-navber);
-                }
-
+            transition: transform 0.3s ease;
+    
+            &:hover {
+                transform: scale(1.03);
             }
-            
+        }
+  
+        .date-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
     }
+  
+    .post-meta {
+        color: var(--text);
+        font-size: 1rem;
+        margin-left: 1.5rem;
+  
+        .author,
+        .comments {
+            display: flex;
+            align-items: center;
+    
+            i {
+                margin-right: 5px;
+                color:var(--yellow);
+            }
+        }
+    }
+  
+    .post-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
+  
+    .post-content {
+        padding: 0 1.5rem;
+        color:var(--color-block);
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+    
+            &:last-child {
+                margin-bottom: 0;
+                padding-top: 13px;
+            }
+        }
+    }
+  
+    // Responsive adjustments
+    @media (max-width: 768px) {
+        .post-title {
+            font-size: 1.8rem;
+        }
+  
+        .featured-image {
+            .date-badge {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+    }
+  }
+  .comment-block {
+    padding: 1.5rem 0;
+    
+    // Заголовок формы
+    &__title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: #222;
+    }
+    
+    // Стили для чекбокса
+   
+    
+    // Стили для полей ввода
+    &__inputs {
+      .form-control {
+        background-color: var(--comment-input);
+        border: none;
+        padding: 0.9375rem 1.25rem;
+        height: auto;
+        
+        &::placeholder {
+          color: #888;
+        }
+        
+        &:focus {
+          box-shadow: none;
+          background-color: var(--comment-input);
+        }
+      }
+      
+      // Специальные стили для текстового поля
+      textarea.form-control {
+        min-height: 10rem;
+        resize: none;
+      }
+    }
+    
+    // Стили для кнопки отправки
+   
+  }
+  .author-block {
+        display: flex;
+        align-items: flex-start;
+        padding: 20px 0;
+    
+        &__image {
+            flex: 0 0 120px;
+            margin-right: 20px;
+        
+            img {
+                width: 100%;
+                height: auto;
+                max-width: 120px;
+                border-radius: 50%;
+            }
+        }
+  
+        &__info {
+            flex: 1;
+        }
+  
+        &__name {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+            color: var(--black);
+        }
+  
+        &__date {
+            font-size: 14px;
+            color: var(--primary-color);
+            margin: 0 0 12px 0;
+        }
+  
+        &__text {
+            p {
+                font-size: 15px;
+                line-height: 1.6;
+                color: var(--gray_card);
+                margin: 0;
+            }
+        }
+    
+        @media (max-width: 576px) {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        
+            &__image {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
 }

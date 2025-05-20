@@ -127,9 +127,13 @@ class OrderEditScreen extends Screen
                 
                     
                 TextArea::make('order.comment')
-                    ->title(__('Notes to the order'))
+                    ->title(__('Notes to the order')),
                 
-
+                Input::make('order.promocode.code')
+                    ->readonly()
+                    //->value($this->order->promocode->code)
+                    ->canSee(!empty($this->order->promocode_id))
+                    ->title('Promocode')
 
             ]),
             OrderPayListener::class,

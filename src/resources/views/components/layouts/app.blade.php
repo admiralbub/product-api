@@ -15,12 +15,13 @@
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:image" content="">
-        
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
       
         <meta name="description" content="{{$descriptions ?? ''}}">
         <meta name="keywords" content="{{$keywords ?? ''}}">
 
-        @if($no_index)
+        @if($no_index || request()->has('page') || request()->has('sort') || request()->has('min_price') || request()->has('max_price'))
             <meta name="robots" content="noindex, nofollow">
         @endif
         @php
@@ -47,7 +48,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="{{settings('favicon')}}">
        
   
         @vite('resources/scss/app.scss')
@@ -71,16 +72,18 @@
 
         <x-alert.toast/>
         <x-layouts.header/>
-        <x-layouts.header-mob/>
-        <x-layouts.catalog/>
+        <x-layouts.mob-catalog/>
+        {{-- <x-layouts.catalog/>--}}
         <div class="main mt-2 mt-md-1">
             {{ $slot }}
         </div>
+        
         {{-- <x-block.subscribers/>--}}
-        <x-layouts.footer/>
         <x-layouts.mob_nav_bottom/>
+        <x-layouts.footer/>
+
         <x-basket/>
-        <x-search-mob/>
+        <x-search/>
         <x-block.widget/>
         <div class="body-overlay"></div>
         @if(marketing_service_body_close()) 

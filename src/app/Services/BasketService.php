@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\Basket; 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use Snowfire\Beautymail\Beautymail;
 use App\Actions\Basket\AddBasketAction;
 use App\Actions\Basket\UpdateBasketAction;
 
@@ -271,5 +271,40 @@ class BasketService implements BasketInterface {
             return session()->forget('cart');
         }
     }
-    
+    static public function sendEmailBasketNotification() {
+        $baskets = Basket::selectRaw('MIN(id) as id, user_id')->groupBy('user_id')->get();
+        foreach($baskets as $basket) {
+            $beautymail = app()->make(Beautymail::class);
+
+
+            $id_array = Basket::where('user_id',$basket->user_id)->select("product_id")->get()->toArray();
+            $list_products = Product::whereIn('id', $id_array)->get();
+            $list_products = $list_products->map(
+                function ($prod) use($basket) {
+                    $data = Basket::where('user_id',$basket->user_id)->where('product_id',$prod->id)->first();
+                    $prod->name = $prod->name_ua;
+                    $prod->slug = $prod->slug;
+                    $prod->pack_volume =$prod->packs->find($data->pack_id)->volume ?? $prod->packs()->min('volume');
+                    $prod->pack_name = $prod->packs->find($data->pack_id)->title_ua ?? $prod->packs()->min('name_ua');
+                    $prod->quantity = $data->quantity;
+                    $prod->pack_id = $data->pack_id;
+                    $prod->price = $prod->packs->find($data->pack_id)->volume * $prod->price; 
+                    
+                    ////////////
+                    return $prod;
+                }
+            );
+
+
+
+            $beautymail->send('email.basket', ['list_baskets'=>$list_products,'name'=>$basket->user->name], function($message) use($basket)
+                {
+                    $message
+                        ->from(config('app.email'))
+                        ->to($basket->user->email)
+                        ->subject('Ви залишили товари у кошику на сайті '.settings('site_name_ua'));
+                }
+            );
+        }
+    }
 }

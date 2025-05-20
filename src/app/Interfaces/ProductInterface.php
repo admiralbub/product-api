@@ -19,5 +19,7 @@ interface ProductInterface {
     public function selectedFilter($attrFilter);
     public function searchProduct($search);
     public function searchProductAjax($search);
+
+    public function loadDunamicProduct($skip, $limit);
 }
 ?>

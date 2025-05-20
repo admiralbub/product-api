@@ -1,5 +1,5 @@
 @if(count($newProduct)>0)
-    <div class="main-products container">
+    <div class="main-products container mb-3">
         <div class="d-flex justify-content-between">
             <div class="main-products_heading">
                 <h3 class="fs-1 ">

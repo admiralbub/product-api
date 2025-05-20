@@ -29,6 +29,8 @@ class Order extends Model
 		'pay_info',
 		'user_id',
 		'pay_amount',
+		'total_promocode',
+		'promocode_id'
 		
         
 	];  
@@ -44,6 +46,10 @@ class Order extends Model
     public function user()
 	{
 		return $this->belongsTo(User::class,'user_id','id');
+	}
+	public function promocode()
+	{
+		return $this->belongsTo(Promocode::class,'promocode_id','id');
 	}
 
 	/**

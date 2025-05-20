@@ -5,6 +5,8 @@ use App\Interfaces\OrderInterface;
 
 use App\Models\Order; 
 use App\Models\Product; 
+use App\Models\Promocode; 
+use App\Models\BanUser; 
 use App\Actions\Order\OrderAction;
 use App\Actions\Order\OrderProductAction;
 
@@ -12,7 +14,25 @@ use App\Actions\Order\OrderOneClickAction;
 use Snowfire\Beautymail\Beautymail;
 use App\Actions\Order\AddProductOneClickAction;
 class OrderService implements OrderInterface {
-    static public function getOrderAdd($request,$totalBasket) {
+    
+    
+    /*static public function getOrderPromocode($promocode,$totalBasket) {
+        $promocod = Promocode::where('code',$promocode)->available()->dateActivation()->first();
+        if(isset($promocod)) {
+            if($promocod->type_promocode == 1) {
+                $totalBasket = $totalBasket - $promocod->fixed_price;
+            } else if($promocod->type_promocode == 2)   {
+                $totalBasket = $totalBasket - ($totalBasket * ($promocod->percentage_price / 100));
+            } else {
+                $totalBasket = $totalBasket;
+            }
+            
+        }
+        return $totalBasket;
+        
+    }*/
+
+    static public function getOrderAdd($request,$totalBasket,$total_promocode=0) {
         //dd($request);
         $delivery_order = [
             'deliver' => $request->deliver ?? '',
@@ -48,8 +68,11 @@ class OrderService implements OrderInterface {
         ];
    
         $pay_info = json_encode($pay_info);
+       // $total_promocode = 0;
+       
 
-        $order = (new OrderAction())->execute($request,$delivery_order,$pay_info,$totalBasket);
+
+        $order = (new OrderAction())->execute($request,$delivery_order,$pay_info,$totalBasket,$total_promocode);
         return $order->id;
     }
     static public function getProductAdd($baskets,$order_id) {
@@ -97,6 +120,20 @@ class OrderService implements OrderInterface {
                 ->to($order_last->email)
                 ->subject('Замовлення №'.$order_last->id.' отримано, найближчим часом буде прийнято в роботу.');
             });
+    }
+    static public function orderBuyThanks($id) {
+        $order = Order::where('id', $id)->first();
+        return $order;
+    }
+    static public function banUser($phone,$email) {
+        $ban_user = BanUser::where('phone',$phone)
+            ->orWhere('email',$email)
+            ->count();
+        if($ban_user) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
 

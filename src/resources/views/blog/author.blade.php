@@ -4,10 +4,12 @@
     :keywords="__('Author blog').' - '.$author->name"
     no_index=0>
     
-    <div class="container py-5">
-        <x-breadcrumbs :breadcrumbs="$breadcrumbs"></x-breadcrumbs>
-        <div class="blog_show mt-3 mb-5">
-            <h1 class="fs-2">{{__('Author blog').' - '.$author->name}}</h1>
+    <x-block.hero :h1="__('Author blog').' - '.$author->name" :breadcrumbs="$breadcrumbs"></x-x-block.hero>
+
+    <div class="container py-2">
+
+        <div class="blog_show mb-5">
+  
             <div class="py-3">
                 @if($author->available())
                     <x-post.author :author="$author"/>
@@ -19,7 +21,7 @@
                 </span>
             </div>
         </div>
-        <div class="blogs mt-4">
+        <div class="news-section mt-4 mb-5">
             
             @if(count($posts))
                 <div class="row g-4">

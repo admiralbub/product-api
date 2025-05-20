@@ -19,6 +19,8 @@ interface BasketInterface {
     static public function clearBasket($isAuth);
     static public function priceProductGeneral ($prod);
     static public function showBasketOneClick(Product $product,$quantity);
+
+    static public function sendEmailBasketNotification();
 }
 
 ?>

@@ -82,6 +82,94 @@ use App\Orchid\Screens\BlogComment\BlogCommentListScreen;
 use App\Orchid\Screens\PaymentMethod\PaymentMethodEditScreen;
 use App\Orchid\Screens\PaymentMethod\PaymentMethodListScreen;
 
+use App\Orchid\Screens\Promocode\PromocodeEditScreen;
+use App\Orchid\Screens\Promocode\PromocodeListScreen;
+
+use App\Orchid\Screens\Basket\BasketListScreen;
+use App\Orchid\Screens\Basket\BasketEditScreen;
+
+use App\Orchid\Screens\FoundCheaper\FoundCheaperEditScreen;
+use App\Orchid\Screens\FoundCheaper\FoundCheaperListScreen;
+
+use App\Orchid\Screens\BanUser\BanUserEditScreen;
+use App\Orchid\Screens\BanUser\BanUserListScreen;
+
+
+Route::screen('/ban_users', BanUserListScreen::class)
+    ->name('platform.ban_users.list')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Ban users'), route('platform.ban_users.list')));
+
+Route::screen('/ban_users/{ban_user}/edit', BanUserEditScreen::class)
+    ->name('platform.ban_user.edit')
+    ->breadcrumbs(fn (Trail $trail, $ban_user) => $trail
+        ->parent('platform.ban_users.list')
+        ->push(__('Edit').' №'.$ban_user->id, route('platform.ban_user.edit',$ban_user)));
+
+
+Route::screen('/ban_users/create', BanUserEditScreen::class)
+    ->name('platform.ban_user.create')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.ban_users.list')
+        ->push(__('Create').' '.__('Ban users'), route('platform.ban_user.create')));
+
+
+
+
+        
+
+Route::screen('/foundCheapers', FoundCheaperListScreen::class)
+    ->name('platform.found_cheapers.list')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('FOUND CHEAPER'), route('platform.found_cheapers.list')));
+        
+Route::screen('/foundCheapers/{foundcheaper}/edit', FoundCheaperEditScreen::class)
+     ->name('platform.found_cheaper.edit')
+    ->breadcrumbs(fn (Trail $trail, $foundcheaper) => $trail
+        ->parent('platform.found_cheapers.list')
+        ->push(__('FOUND CHEAPER').' #'.$foundcheaper->id, route('platform.found_cheaper.edit', $foundcheaper)));
+
+
+
+Route::screen('/baskets', BasketListScreen::class)
+    ->name('platform.baskets.list')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Basket'), route('platform.baskets.list')));
+
+Route::screen('/baskets/{basket}/edit', BasketEditScreen::class)
+    ->name('platform.baskets.edit')
+    ->breadcrumbs(fn (Trail $trail, $basket) => $trail
+        ->parent('platform.baskets.list')
+        ->push(__('Basket').' #'.$basket->id, route('platform.baskets.edit', $basket)));
+
+
+
+
+Route::screen('/promocodes', PromocodeListScreen::class)
+    ->name('platform.promocodes.list')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Promocodes'), route('platform.promocodes.list')));
+
+Route::screen('/promocodes/{promocode}/edit', PromocodeEditScreen::class)
+    ->name('platform.promocode.edit')
+    ->breadcrumbs(fn (Trail $trail, $promocode) => $trail
+        ->parent('platform.promocodes.list')
+        ->push(__('Edit').' '.__('Promocode').' №'.$promocode->id, route('platform.promocode.edit',$promocode)));
+
+
+Route::screen('/promocodes/create', PromocodeEditScreen::class)
+    ->name('platform.promocode.create')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.promocodes.list')
+        ->push(__('Create').' '.__('Promocode'), route('platform.promocode.create')));
+
+
+        
+        
 Route::screen('/payment-providers', PaymentProviderScreen::class)
     ->name('platform.payment_providers.list')
     ->breadcrumbs(fn (Trail $trail) => $trail

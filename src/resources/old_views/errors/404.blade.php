@@ -1,0 +1,16 @@
+<x-layouts.app  
+    :title="__('not_found_title')"
+    :descriptions="__('not_found_title')"
+    :keywords="__('not_found_title')"
+    no_index=1>
+
+    <div class="container mt-lg-3 mt-2 mb-4 not-page">
+	    <h1>{{__("not_found_title")}}</h1>
+        <br>
+        @foreach(__('not_found_text') as $text)
+            {!! $text !!}
+        @endforeach
+       
+    </div>
+
+</x-layouts.app>

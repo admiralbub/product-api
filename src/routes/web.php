@@ -45,7 +45,13 @@ use App\Http\Controllers\Post\PostCommentController;
 use App\Http\Controllers\PbInstallment\PbInstallmentCallbackController;
 
 use App\Http\Controllers\Liqpay\LiqpayController;
+use App\Http\Controllers\Thanks\ThanckOrderController;
 
+use App\Http\Controllers\FoundCheaper\FoundCheaperController;
+
+//use App\Http\Controllers\OrderConfirm\OrderConfirmController;
+
+//use App\Http\Controllers\DunamicProductLoadController;
 
 require __DIR__ . '/admin/admin.php';
 $market = parse_url(config('app.url'), PHP_URL_HOST);
@@ -60,6 +66,8 @@ Route::group([
     });
     Route::group(['prefix' => 'product'], function () {
         Route::get('/{slug}', ViewProductController::class)->name('product.view');
+        Route::post('/foundCheaper/{slug}', FoundCheaperController::class)->name('product.foundCheaper');
+        
     });    
 
     Route::group(['prefix' => 'compare'], function () {
@@ -189,6 +197,12 @@ Route::group([
         Route::post('/comment-send/{id}', [PostCommentController::class,'send'])->name('blog.comment-send');
     });
 
+    //Route::get('/load-more-products', [DunamicProductLoadController::class, 'loadMore'])->name('load.more.products');
+    //Route::post('/order_confirm', OrderConfirmController::class)->name('order_confirm');
+
+});
+Route::group(['prefix' => 'thanks'], function () {
+    Route::get('/buy/{id}', ThanckOrderController::class)->name('thanks.buy');
 });
 
 Route::group(['prefix' => 'google_price'], function () {

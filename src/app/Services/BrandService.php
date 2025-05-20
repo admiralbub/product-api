@@ -9,7 +9,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 
 class BrandService implements BrandInterface {
-    public const PAGE_COUNT = 10;
+    public const PAGE_COUNT = 12;
     public function getListBrand() {
         $brands = Brand::published()->paginate(self::PAGE_COUNT);
         return $brands;

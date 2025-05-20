@@ -87,56 +87,164 @@
         </div>
     </div>
 </div>
- <header class="header mt-lg-0 mt-2 d-lg-flex d-none">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="header-logo col col-lg-3">
+<header class="top-header pt-2 mt-3">
+    <div class="container mb-3">
+        <div class="row align-items-center justify-content-between">
+            <!-- Logo -->
+            <div class="col-6 col-md-4 d-flex align-items-center">
                 <a href="{{route('index')}}">
-                    <img src="{{settings('logo_site')}}" width="150px">
+                    <img src="{{settings('logo_site')}}" width="150px" class="img-fluid logo">
                 </a>
-                    
             </div>
-            <div class="col col-lg-5 d-lg-block d-none">
-                <ul class="header-menu pt-2">
-                    <li class="header-menu-item"><a href="{{route('index')}}">{{__('Home')}}</a></li>
-                    <li class="header-menu-item"><a href="{{route('stock.index')}}">{{__('Stocks')}}</a></li>
-                    <li class="header-menu-item"><a href="{{route('product.brand.list')}}">{{__('Brand')}}</a></li>
-                    <li class="header-menu-item"><a href="{{route('blog.list')}}">{{__('Blog')}}</a></li>
-                    <li class="header-menu-item"><a href="{{route('faq.index')}}"> Faq</a></li>   
-                    @if(count(pages())>0)
-                        @foreach(pages() as $page)
-                            <li class="header-menu-item">
-                                <a href="{{route('page.pages',['slug'=>$page->url])}}">
-                                    {{$page->name}}
-                                </a>
-                            </li>
-                        @endforeach
-                    @endif
-                    
-                    
-                    <!--<li class="header-menu-item"><a href="#">{{__('Blog')}}</a></li>!-->
-                </ul>
+
+            <!-- Mobile toggle -->
+            <div class="col-6 d-flex justify-content-end d-md-none border-0 open-mob-menu">
+                <i class="bi bi-list" style="font-size: 28px;"></i>
             </div>
-            <div class="col col-lg-4 mt-lg-3 mt-0">
-                <div class="header-menu-phone d-flex justify-content-end">
-                    <div class="header-menu-phone-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
-                        </svg>
+
+            <!-- Social + contact (desktop only) -->
+            <div class="col-md-3 d-none d-md-flex justify-content-around top-header-social_icon">
+                @if(settings('telegram_site'))
+                    <a href="{{settings('telegram_site')}}"><i class="bi bi-telegram"></i></a>
+                @endif
+                @if(settings('facebook_site'))
+                    <a href="{{settings('facebook_site')}}"><i class="bi bi-facebook"></i></a>
+                @endif
+                @if(settings('youtube_site'))
+                    <a href="{{settings('youtube_site')}}"><i class="bi bi-youtube"></i></a>
+                @endif
+                @if(settings('tiktok_site'))
+                    <a href="{{settings('tiktok_site')}}"><i class="bi bi-tiktok"></i></a>
+                @endif
+                @if(settings('instagram_site'))
+                    <a href="{{settings('instagram_site')}}"><i class="bi bi-instagram"></i></a>
+                @endif
+                @if(settings('viber_site'))
+                    <a href="{{settings('viber_site')}}"><img src="{{asset('icon/viber.png')}}" alt="" width="30px"></a>
+                @endif
+            </div>
+
+            <div class="col-md-2 d-none d-md-flex align-items-center contact-box">
+                <div class="contact-info">
+                    <img src="{{asset('images/icon/phone-icon.svg')}}" alt="">
+                    <div>
+                        <small>{{__('Phone_title')}}</small>
+                        <strong>
+                            <a href="tel:{{ str_replace([' ', '(', ')', '-'], '', settings('phone_site'))}}">{{settings('phone_site')}}</a>
+                        </strong>
                     </div>
-                            
-                    <span class="header-menu-phone-content pl-2">
-                        @if(settings('phone_site'))   
-                            <small>{{__('Phone_title')}}:</small>
-                            <p>
-                                <a href="tel:{{ str_replace([' ', '(', ')', '-'], '', settings('phone_site'))}}">{{settings('phone_site')}}</a>
-                            </p>
-                        @endif
-                    </span>
                 </div>
-                    
+            </div>
+
+            <div class="col-md-2 d-none d-md-block border-left">
+                <div class="contact-info">
+                    <img src="{{asset('images/icon/email-icon.svg')}}" alt="">
+                    <div>
+                        <small>{{__('Email')}}</small>
+                        <strong>
+                            <a href="mailto:{{settings('email_site')}}">
+                                {{settings('email_site')}}
+                            </a>
+                        </strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 d-none  d-none border-left">
+                <div class="contact-info">
+                    <img src="{{asset('images/icon/map-icon.svg')}}" alt="">
+                    <div>
+                        <small>Location</small>
+                        <strong>Melbourne, Australia</strong>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-        
+
+    <!-- Navbar -->
+    <div class="navbar-menu d-none d-lg-block">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 d-flex justify-content-between align-items-center flex-wrap">
+
+                    <!-- Collapsible menu for mobile -->
+                    <div class="collapse d-md-flex flex-grow-1" id="mobileMenu">
+                        <nav class="nav-links flex-column flex-md-row">
+                            <li><a class="dropdown-item" href="{{route('index')}}">{{__('Home')}}</a></li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link d-flex align-items-center gap-2 nav_menu_catalogs">
+                                    <span>{{__('Catalog')}}</span><i class="bi bi-chevron-down"></i>
+                                </a>
+                                <ul class="dropdown-menu nav_menu_catalogs__products">
+                                    <li class="dropdown-submenu d-none">
+                                        <a class="dropdown-item" href="#">
+                                            Категория 1
+                                            <i class="bi bi-chevron-right float-end"></i>
+                                        </a>
+                                        <div class="submenu dropdown-menu">
+                                            <ul class="top-navigation">
+                                                <li><a class="dropdown-item" href="#">Подкатегория 1.1</a></li>
+                                                <li><a class="dropdown-item" href="#">Подкатегория 1.2</a></li>
+                                                <li><a class="dropdown-item" href="#">Подкатегория 1.3</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+
+                                    <li class="dropdown-submenu d-none">
+                                        <a class="dropdown-item" href="#">
+                                            Категория 2
+                                            <i class="bi bi-chevron-right float-end d-none"></i>
+                                        </a>
+                                        <div class="submenu dropdown-menu d-none">
+                                            <ul class="top-navigation">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Подкатегория 2.1</a>
+                                                    <ul class="top-navigation-list">
+                                                        <li><a href="https://zelenijmajster.com/ru/products/gerbicidi-vibirkovoji-diji">Гербициды выборочного действия</a></li>
+                                                        <li><a href="https://zelenijmajster.com/ru/products/gruntovi-gerbicidi">Грунтовые гербициды</a></li>
+                                                        <li><a href="https://zelenijmajster.com/ru/products/pislyashodovi-gerbicidi">Послевсходовые гербициды</a></li>
+                                                        <li><a href="https://zelenijmajster.com/ru/products/desikanti">Десиканты</a></li>
+                                                    </ul>
+                                                </li>
+
+                                             
+                                              
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <x-layouts.catalog/>
+                                </ul>
+                            </li>
+                            <li><a class="dropdown-item" href="{{route('stock.index')}}">{{__('Stocks')}}</a></li>
+                            <li><a class="dropdown-item" href="{{route('product.brand.list')}}">{{__('Brand')}}</a></li>
+                            <li><a class="dropdown-item" href="{{route('blog.list')}}">{{__('Blog')}}</a></li>
+                            <li><a class="dropdown-item" href="{{route('faq.index')}}"> Faq</a></li>   
+                            @if(count(pages())>0)
+                                @foreach(pages() as $page)
+                                    <li>
+                                        <a class="dropdown-item" href="{{route('page.pages',['slug'=>$page->url])}}">
+                                            {{$page->name}}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @endif
+                        </nav>
+                    </div>
+
+                    <!-- Icons (always visible) -->
+                    <div class="icons d-flex align-items-center border-left mt-3 mt-md-0">
+                        <div><i class="bi bi-search me-3" data-bs-toggle="modal" data-bs-target="#searchModal"></i></div>
+                        
+                        <div class="position-relative" id="openRightBasket">
+                            <i class="bi bi-cart"></i>
+                            <span class="cart-count" id="basket-count">0</span>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 </header>

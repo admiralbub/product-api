@@ -32,16 +32,27 @@
     :descriptions="$description"
     :keywords="$keywords"
     :no_index=$no_index>
+    @if($seo_attr_filter)
+        <x-block.hero 
+            :h1="$seo_attr_filter->parseH1(
+                $category->id, 
+                $selectedFilter['brand'][0] ?? 0, 
+                attr_feature($selectedFilter) ?? 0, 
+                attr_feature($selectedFilter) ?? 0
+            )" 
+            :breadcrumbs="$breadcrumbs"
+        />
+    @else
+        <x-block.hero 
+            :h1="$category->h1_parsed ? $category->h1_parsed : $category->h1" 
+            :breadcrumbs="$breadcrumbs" 
+        />
+    @endif
     <div class="container mb-5">
         
-        <x-breadcrumbs :breadcrumbs="$breadcrumbs"></x-breadcrumbs>
+        
         <div class="mt-2 category-heading">
-            @if($seo_attr_filter)
-                <h1 class="fs-2">{{$seo_attr_filter->parseH1($category->id,$selectedFilter["brand"][0] ?? 0,attr_feature($selectedFilter) ?? 0,attr_feature($selectedFilter) ?? 0)}}</h1>
-            @else
-
-                <h1 class="fs-2">{{$category->h1_parsed ? $category->h1_parsed : $category->h1}}</h1>
-            @endif
+            
             <div class="mt-4">
                 @auth
                 
@@ -72,12 +83,23 @@
                     <div class="px-4">
                         <x-products.sort></x-products.sort>
                         @if($products)
-                            <div class="row row-cols-xxl-4 row-cols-md-2 row-cols-sm-2 row-cols-2 mb-30 card_products">
+                           
+                            <div class="getProductAjax row product-row" id="products-container">
+                                <!-- Apple Card -->
                                 @foreach($products as $product)
                                     <x-products.product :product="$product"></x-products.product>
                                 @endforeach
+                                
                             </div>
-                            <div class="mt-3">
+
+                            <div class="text-center">
+                                <button  id="LoadProduct" class="btn btn-primary @if(empty($products->nextPageUrl())) d-none @endif" data-url="{{$products->nextPageUrl()}}">
+                                {{__('Show more')}}
+                                </button>
+                            </div>
+                            
+                    
+                            <div class="mt-3" id="pagination_products">
                                 {{ $products->links() }}
                             </div>
                         @else
@@ -92,7 +114,7 @@
         @if(!request()->has('page'))
             @if($selectedFilter) 
                 @if ($seo_attr_filter)
-                    <div class="mt-3">
+                    <div class="mt-3 page_description">
                         {!! preg_replace('#<h1([^>]*)>(.*)</h1>#m','<h2$1>$2</h2>', $seo_attr_filter->description) !!}
                     </div>
                 
@@ -100,7 +122,7 @@
 
             @else
                 @if($category->description)
-                    <div class="mt-3">
+                    <div class="mt-3 page_description">
                         {!! preg_replace('#<h1([^>]*)>(.*)</h1>#m','<h2$1>$2</h2>', $category->description) !!}
                     </div>
                 @endif

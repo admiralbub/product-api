@@ -52,18 +52,37 @@ class CategoryController extends Controller
                 $products = $this->productInt->getAllProduct($productsCategory,$category);
             }
         }
-        
+        if($request->get('ajax') == 1) {
+            $page_next = $products->nextPageUrl();
+            $page = 0;
+            if($products instanceof \Illuminate\Pagination\AbstractPaginator) {
+                $pagination = $products->appends(request()->except(['page', 'ajax']))->links()->toHtml();
+            }
+
+            return response()->json([
+                "status"=>true,
+                "page"=>$page,
+                'page_next'=> $page_next,
+                'pagination'=>$pagination,
+                "success"=>view('products.items_dunamic',[
+                    'products'=>$products,
+                    'list_products'=>1,
+                ])->render()
+            ], 200);
+        } else {
+            return view('products.list',[
+                'seo_attr_filter'=>$seo_attr_filter ?? 0,
+                'category'=>$category,
+                'brands'=>$brands,
+                'products'=>$products,
+                'price'=>$price,
+                'selectedFilter'=>$selectedFilter ?? "",
+                'attrs'=>$attrs,
+                'breadcrumbs'=>$breadcrumbs
+            ]);
+        }
     
-        return view('products.list',[
-            'seo_attr_filter'=>$seo_attr_filter ?? 0,
-            'category'=>$category,
-            'brands'=>$brands,
-            'products'=>$products,
-            'price'=>$price,
-            'selectedFilter'=>$selectedFilter ?? "",
-            'attrs'=>$attrs,
-            'breadcrumbs'=>$breadcrumbs
-        ]);
+        
 
     }
 }

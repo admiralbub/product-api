@@ -4,11 +4,10 @@
         height: 150px;
     }
     @media (min-width: 990px) {
-        height: 350px;
+        height: 450px;
     }
     margin: 0 !important;
     padding: 0 !important;
-    border: 1px solid var(--border-right);
     border-radius: 10px;
     &-wrapper {
         &-slide  {
