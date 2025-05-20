@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const minPriceDisplay = document.getElementById('min-price');
     const maxPriceDisplay = document.getElementById('max-price');
     const track = document.querySelector('.slider-track');
-    if(minPriceDisplay || maxPriceDisplay) {
+    if(minPriceDisplay || maxPriceDisplay ) {
         // Price range configuration
         const minPrice = parseInt(minPriceDisplay.dataset.min, 10) || 0;
         const maxPrice = parseInt(maxPriceDisplay.dataset.max, 10) || 1000;
