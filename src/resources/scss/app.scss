@@ -5,6 +5,7 @@
 @import 'bootstrap/scss/_variables.scss';
 @import 'bootstrap/scss/mixins';
 @import "bootstrap-icons/font/bootstrap-icons.css";
+
 html {
     overflow: scroll;
     overflow-x: hidden;
@@ -63,7 +64,20 @@ $theme-colors:map-merge($theme-colors,$custom-color);
 }
 .top-header {
     background: var(--white-navbar);
-  
+    position: relative;
+    @media (max-width: 990px) {
+        .mob_fixed {
+            position: fixed;
+            background: var(--white-navbar);
+            top: 0;
+            left: 0;
+            padding: 14px 20px;
+            right: 0;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+    }
+    
     & .logo {
         max-height: 50px;
     }
@@ -73,6 +87,7 @@ $theme-colors:map-merge($theme-colors,$custom-color);
             border-radius: 50%;
             background: var(--yellow-white);
             padding: 10px 14px;
+            margin: 0 5px;
         }
     }
   
@@ -96,13 +111,28 @@ $theme-colors:map-merge($theme-colors,$custom-color);
             & a {
                 color: #000;
                 text-decoration: none;
+                &:hover {
+                    color: var(--primary-color);
+                }
             }
         }
     }
     & .navbar-menu {
         background: var(--yellow-white);
-        padding: 15px 20px;
-
+        padding: 10px 20px;
+        position: relative;
+        @media (min-width: 990px) {
+            & .torn-paper-top {
+                position: absolute;
+                top: 50px;
+                left: 0;
+                width: 100%;
+                height: 30px;
+                background: url('/public/images/header_effect.svg') repeat-x bottom;
+                background-size: auto 100%;
+                z-index: 99;
+            }
+        }
         & .nav-links {
             display: flex;
             gap: 40px;
@@ -226,14 +256,23 @@ $theme-colors:map-merge($theme-colors,$custom-color);
             
           
         }
-      
+        & .icons-search {
+            & i {
+                font-size: 20px;
+                cursor: pointer;
+                color: var(--black);
+                &:hover {
+                    color: var(--primary-color);
+                }
+            }
+        }
         & .icons {
             & i {
                 font-size: 20px;
                 cursor: pointer;
-                color: #000;
+                color: var(--black);
                 &:hover {
-                    color: #2e7d32;
+                    color: var(--primary-color);
                 }
     
             }
@@ -310,13 +349,22 @@ $theme-colors:map-merge($theme-colors,$custom-color);
         z-index: 99;
         width: 100%;
         margin: 0;
-        top: 410px;
+        top: 440px;
     }
 
 }
 .about_block {
-    margin-top: 150px;
-    margin-bottom: 150px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    background-color: var(--yellow-white);
+    &-img {
+        width: 400px;
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
     @media (max-width: 990px) {
         margin-top: 0px;
         
@@ -328,7 +376,7 @@ $theme-colors:map-merge($theme-colors,$custom-color);
         
     }
     &-text {
-        margin-top: 100px !important;
+        margin-top: 50px !important;
         & p {
             line-height: 30px;
             color: var(--color-block);
@@ -455,29 +503,40 @@ $theme-colors:map-merge($theme-colors,$custom-color);
             }
         }
     }
-  
     .social-icons {
-        margin-top: 20px;
-  
-        a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        & i {
+            color: var(--white);
+            font-size: 20px;
+          
             width: 36px;
             height: 36px;
-            border-radius: 50%;
-            background-color: var(--social-footer-bg);
+
+       
             color: var(--white);
             margin-right: 10px;
-            transition: all 0.3s ease;
-    
-            &:hover {
-                background-color: var(--primary-color);
-                transform: translateY(-3px);
-            }
+        
         }
-    }
+        & .viber-icon {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
   
+            
+            img {
+                width: 100%;
+                height: 100%;
+                transition: all 0.3s ease;
+            }
+            
+        }
+      
+        
+    }
+   
     &-bottom {
         background-color: var(--footer-bottom-bg);
         padding-top: 20px;
@@ -546,8 +605,10 @@ $theme-colors:map-merge($theme-colors,$custom-color);
 }
 .sticky-header {
     position: fixed;
+    background: var(--yellow-white);
     top: 0;
     left: 0;
+    padding: 14px 0px;
     right: 0;
     z-index: 999;
     transition: all 0.3s ease;
@@ -747,11 +808,6 @@ $theme-colors:map-merge($theme-colors,$custom-color);
 $pagination-active-bg:  $green;
 $pagination-active-border-color:$green;
 
-.page_description {
-    & ul,li {
-        list-style: inherit;
-    }
-}
 .thanks {
     margin-bottom: 50px;
     & .thanks_pay {
@@ -769,6 +825,39 @@ $pagination-active-border-color:$green;
         color: var(--main-color);
     }
 }
+.agriculture-banner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    cursor: pointer;
+    
+    & img {
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 768px) {
+    .agriculture-banner {
+        height: 300px;
+        
+        &__title {
+            font-size: 1.8rem;
+        }
+        
+        &__play-button {
+            width: 50px;
+            height: 50px;
+            right: 10%;
+            
+            i {
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
 @import "bootstrap/scss/bootstrap";
 @import 'main_slider';
 @import 'hero';
@@ -780,6 +869,7 @@ $pagination-active-border-color:$green;
 @import 'blogs';
 @import 'category';
 @import 'table';
+@import 'page';
 @import 'orders';
 @import 'show_product';
 @import 'card_product';

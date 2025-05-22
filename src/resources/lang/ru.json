@@ -98,9 +98,10 @@
     "Population point":"Населенный пункт",
     "register_button":"Зарегистрироваться",
     "Repeatpassword":"Повторить пароль",
-
+    "The banner should be 1280 by 287 in size":"Баннер должен быть с размером 1280 на 287",
+    "The banner should be 1280 by 340 in size":"Баннер должен быть с размером 1280 на 340",
     "dont_account_title":"Нет учетной записи? <a href=':route'>Создать учетную запись</a>",
-
+    "Author unknown":"Автор неизвестен",
     "validation_required_title":"Поле :attribute обязательно.",
     "validation_string_title":"Поле :attribute должно содержать текст.",
     "validation_unique_title":"Указанное значение поля :attribute уже существует.",
@@ -260,6 +261,7 @@
     "To pay":"К оплате",
     "Paid":"Оплачен",
     "Sent":"Отправлено",
+    "Send":"Отправить",
     "Cancel order":"Отменено",
     "Setting":"Настройки",
     "Review":"Обзор",

@@ -1,4 +1,92 @@
 .orders {
+    & input {
+ 
+       border:1px solid var(--fill-icon);
+    }
+    & .order-options {
+        padding: 0;
+        
+        &__item {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.3rem 3rem 0.4rem 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+
+            &:hover {
+                border-color: var(--primary-color);
+                box-shadow: 0 4px 12px var(--shadow-light);
+            }
+
+            &--active {
+                border-color: var(--primary-color);
+                background: rgba(227, 30, 36, 0.02);
+            }
+
+            &__radio {
+                position: absolute;
+                top: 1.5rem;
+                left: 1.5rem;
+                width: 20px;
+                height: 20px;
+                appearance: none;
+                border: 2px solid var(--border-color);
+                border-radius: 50%;
+                background: var(--border-color);
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &:checked {
+                    border-color: var(--primary-color);
+                    background: var(--white);
+                    
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 10px;
+                        height: 10px;
+                        background: var(--primary-color);
+                        border-radius: 50%;
+                    }
+                }
+            }
+
+            &__content {
+                margin-left: 2rem;
+                
+                &-header {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.75rem;
+                    margin-bottom: 0.5rem;
+
+                    &-title {
+                        color: var(--text-dark);
+                        font-weight: 600;
+                        font-size: 1rem;
+                        margin: 0;
+                    }
+
+                    &-logo {
+                        height: 24px;
+                        width: auto;
+                    }
+                }
+
+                &-description {
+                    color: var(--text-muted);
+                    font-size: 0.9rem;
+                    margin: 0;
+                    line-height: 1.4;
+                }
+            }
+        }
+    }
+
     & .close_input {
         content: "&times;";
         display: block;

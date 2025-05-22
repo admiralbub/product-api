@@ -11,7 +11,7 @@
         "image": "{{$blog->img}}", 
         "author": {
             "@type": "Person",
-            "name": "{{$blog->author->name}}"
+            "name": "{{$blog->author ? $blog->author->name : __('Author unknown')}}"
         },
         "publisher": {
             "@type": "Organization",

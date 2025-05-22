@@ -132,7 +132,7 @@ if (forms.length) {
     // Функция отправки данных формы через AJAX
     async function submitForm(form) {
         const formData = new FormData(form);
-
+        
         try {
             
             const response = await fetch(form.action, {

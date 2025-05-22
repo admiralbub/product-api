@@ -1,8 +1,19 @@
 
-<div class="col-md-4 mb-4">
-    <div class="product-card">
+<div class="col-md-4 mb-4 ">
+    <div class="product-card position-relative">
         <div class="product-image" onclick="document.location='{{route('product.view',$product->slug)}}'">
-            <img src="{{ asset($product->image)}}" alt="Apples">
+            <a href="{{route('product.view',$product->slug)}}">
+                <img src="{{ asset($product->image)}}" alt="Apples">
+            </a>
+        </div>
+        <div class="managment" >
+            
+            <div class="managment_heart AddWislistList">
+                <button class="button_heart_card" data-id="{{$product->id}}" data-auth="{{auth()->check() ? '1' : '0'}}">
+                    <i class="bi bi-suit-heart fs-5"></i>
+
+                </button>
+            </div>    
         </div>
         <div onclick="document.location='{{route('product.view',$product->slug)}}'" style="cursor:pointer;">
             <div class="product-name">

@@ -277,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>`
     }
     
-    document.addEventListener('click', function(e) {
+    document.addEventListener('mousedown', function(e) {
         // Проверяем, был ли клик на элементе с классом AddBasket или его потомке
         const AddBasket = e.target.closest('.AddBasket');
         

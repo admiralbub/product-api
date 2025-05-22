@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Page;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Page;
+use App\Http\Requests\ContactRequest;
 use App\Interfaces\PageInterface;
 use App\Breadcrumbs\Breadcrumb;
 class PageController extends Controller
@@ -28,6 +29,12 @@ class PageController extends Controller
         return view('page.page',[
             'page'=>$page,
             'breadcrumbs'=>$breadcrumbs
+        ]);
+    }
+    public function contactSend(ContactRequest $request) {
+        return response()->json([
+            'success'=>  __('add_form'),
+            'redirect' => route('page.pages','kontakti')
         ]);
     }
     

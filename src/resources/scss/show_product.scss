@@ -207,10 +207,13 @@
                     color: var(--link-card);
                     text-decoration: none;
                     transition: all 0.2s;
-                    
-                    &:hover {
-                        background-color: var(--сolor-nav);
+                    img.viber-icon {
+                        width: 20px;
+                        height: 20px;
+                        object-fit: contain;
+                        display: block;
                     }
+                    
                 }
             }
         }
@@ -218,9 +221,8 @@
     & .reviews-tab {
             
         & .reviews-tab-bb {
-            border: 1px solid var(--border-action);
+     
             border-radius: 10px;
-            padding: 15px 25px;
             & .reviews-lists {
                 & .product_review-item {
                     display: flex;
@@ -331,8 +333,9 @@
                
             }
         }
-        &-form {
-           & .rating-review {
+        & .comment-block {
+            padding: 1.5rem 0;
+            & .rating-review {
                 position: relative;
                 display: inline-flex;
                 flex-direction: row-reverse;
@@ -368,8 +371,45 @@
                     transition: none;
                  }
            }
+            // Заголовок формы
+            &__title {
+                font-size: 1.75rem;
+                font-weight: 600;
+                margin-bottom: 1.5rem;
+                color: #222;
+            }
             
-        }
+            // Стили для чекбокса
+           
+            
+            // Стили для полей ввода
+            &__inputs {
+                .form-control {
+                    background-color: var(--comment-input);
+                    border: none;
+                    padding: 0.9375rem 1.25rem;
+                    height: auto;
+                
+                    &::placeholder {
+                        color: #888;
+                    }
+                
+                    &:focus {
+                        box-shadow: none;
+                        background-color: var(--comment-input);
+                    }
+                }
+              
+                // Специальные стили для текстового поля
+                textarea.form-control {
+                    min-height: 10rem;
+                    resize: none;
+                }
+            }
+            
+            // Стили для кнопки отправки
+           
+          }
     }
     & .description_product {
         ul,li {

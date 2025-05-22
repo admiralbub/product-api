@@ -27,6 +27,7 @@
     <x-block.new-product :newProduct="$newProduct"/>
     <x-block.recommended-product :recommendedProducts="$recommendedProduct"/>
     <x-block.sale-product :saleProducts="$saleProduct"/>
+    <x-block.banner/>
     <x-block.popular-product :popularProducts="$popularProduct"/>
 
     <x-block.blog :blogMains="$blogMains"/>

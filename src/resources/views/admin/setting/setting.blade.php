@@ -76,6 +76,9 @@
                     </div>
 
                 </div>
+                @if($setting->key=="banner_between_main")
+                    <span>{{__('The banner should be 1280 by 287 in size')}}</span>
+                @endif
             @endif
 
             @if($setting->type=="edit")

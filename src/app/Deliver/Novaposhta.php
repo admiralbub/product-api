@@ -31,15 +31,21 @@ class Novaposhta {
     }
     public static function getWarehouseDB($warehouse,$city) {
 
-        $searchArray = [];
-        $settlements = NpWarehouse::where('Description', 'LIKE', "%{$warehouse}%")->where('CityRef',$city)->get();
-        foreach ($settlements as $sea) {
-            $searchArray[] = [
-                'Description'=>$sea->Description,
-                'Ref'=>$sea->Ref,
+        $settlements = NpWarehouse::where('Description', 'LIKE', "%{$warehouse}%")
+            ->where('CityRef', $city)
+            ->get();
+
+        $bestMatch = $settlements->sortBy(function ($item) {
+            // Например, сортируем по наличию слова "відділення"
+            return stripos($item->Description, 'відділення') === false ? 1 : 0;
+        })->map(function ($sea) {
+            return [
+                'Description' => $sea->Description,
+                'Ref' => $sea->Ref,
             ];
-        }
-        return $searchArray;
+        })->values()->first(); // Получаем одну лучшую запись
+
+        return $bestMatch ?? []; // Возвращаем либо запись, либо пустой массив
           
     }
     public static function getCitiesJSON() {

@@ -213,20 +213,42 @@ if(search_descktop) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const navbar = document.querySelector(".navbar-menu");
-    const stickyOffset = navbar.offsetTop;
-
+document.addEventListener("DOMContentLoaded", function () { 
+    const navbar = document.querySelector(".navbar-menu-fixed");
+    const header_mob_fixed= document.querySelector(".header-mob-fixed");
     window.addEventListener("scroll", function () {
-        if (window.scrollY > stickyOffset) {
+        if (window.scrollY > 200) {
             navbar.classList.add("sticky-header");
+            header_mob_fixed.classList.add("mob_fixed");
+
+            
         } else {
             navbar.classList.remove("sticky-header");
+            header_mob_fixed.classList.remove("mob_fixed");
         }
     });
 });
 
 //////
+// Обработчик событий для всех чекбоксов с классом filter_attr_check
+document.querySelectorAll('.filter_attr_check').forEach(checkbox => {
+    checkbox.addEventListener('click', function () {
+        // Получаем значение URL из атрибута value
+        const url = this.value;
+        // Перенаправляем пользователя по указанному URL
+        window.location.href = url;
+    });
+});
+
+// Обработчик событий для всех чекбоксов с классом filter_attr_check
+document.querySelectorAll('.filter_brand_check').forEach(checkbox => {
+    checkbox.addEventListener('click', function () {
+        // Получаем значение URL из атрибута value
+        const url = this.value;
+        // Перенаправляем пользователя по указанному URL
+        window.location.href = url;
+    });
+});
 
 import './order.js'
 import './field.js'

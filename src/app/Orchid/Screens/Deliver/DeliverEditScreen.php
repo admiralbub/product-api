@@ -108,6 +108,7 @@ class DeliverEditScreen extends Screen
     }
     public function createOrUpdate(Request $request)
     {
+        $deliver = [];
         if($request->get('deliver')['type'] == 5) {
             $deliver['api_key_ukr_post'] = $request->get('deliver')['api_key_ukr_post'];
         }

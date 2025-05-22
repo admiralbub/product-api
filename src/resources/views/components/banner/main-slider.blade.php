@@ -1,5 +1,5 @@
 @if(count($sliders)>0)    
-    <div class="container">
+    <div>
         <div class="unit_swiper_advantages">
             <div class="swiper main_banner">
                 <div class="swiper-wrapper main_banner-wrapper">

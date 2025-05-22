@@ -82,6 +82,7 @@ class MainSliderEditScreen extends Screen
                     ->storage('main_banner')
                     ->maxFileSize(1)
                     ->title(__('Image'))
+                    ->help(__('The banner should be 1280 by 340 in size'))
                     ->required(),
                 Input::make('mainslider.url')
                     ->title(__("Link")),

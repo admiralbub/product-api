@@ -15,10 +15,10 @@
             'title' => "My order", 
             'icon' =>  "bi bi-cart-dash-fill"
         ],
-        /*[
+        [
             'route' => 'profile.wislist', 
             'title' => "Wishlist", 
             'icon' =>  "bi bi-heart"
-        ]*/
+        ]
     ];
 ?>

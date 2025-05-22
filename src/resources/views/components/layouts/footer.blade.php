@@ -20,10 +20,17 @@
                         <a href="{{settings('tiktok_site')}}"><i class="bi bi-tiktok"></i></a>
                     @endif
                     @if(settings('instagram_site'))
-                        <a href="{{settings('instagram_site')}}"><i class="bi bi-instagram"></i></a>
+                        <div class="viber-icon" >
+                            <a href="{{settings('instagram_site')}}"><i class="bi bi-instagram"></i></a>
+                        </div>
                     @endif
                     @if(settings('viber_site'))
-                        <a href="{{settings('viber_site')}}"><img src="{{asset('icon/viber.png')}}" alt="" width="30px"></a>
+                        <div class="viber-icon" >
+                            <a href="{{settings('viber_site')}}"><img src="{{asset('images/icon/viber-white.png')}}" alt=""></a>
+
+                        </div>
+
+                        
                     @endif
                 </div>
             </div>

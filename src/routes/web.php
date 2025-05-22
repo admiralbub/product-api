@@ -182,7 +182,7 @@ Route::group([
 
     Route::group(['prefix' => 'page'], function () {
         Route::get('/{slug}', [PageController::class, 'index'])->name('page.pages');
-
+        Route::post('/contact_send', [PageController::class, 'contactSend'])->name('page.contact_send');
     });
 
     Route::get('/faq', [FaqController::class,'index'])->name('faq.index');

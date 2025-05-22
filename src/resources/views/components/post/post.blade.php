@@ -16,11 +16,17 @@
         </div>
         <div class="card-body text-center">
             <div class="meta mb-2 text-muted small">
-                <a href="{{route('blogs.author',['id'=>$blog->author->id])}}">
+                @if ($blog->author)
+                    <a href="{{route('blogs.author',['id'=>$blog->author->id])}}">
+                        <i class="bi bi-person-fill me-1"></i>
+                        {{$blog->author->name}}
+                    </a>
+
+                @else
                     <i class="bi bi-person-fill me-1"></i>
-                    {{$blog->author->name}}
-                </a>
-                
+                    {{__('Author unknown')}}
+
+                @endif    
                 <span class="ms-3"><i class="bi bi-chat-dots-fill me-1"></i>{{$blog->comment->count()}}</span>
             </div>
             <h5 class="card-title fw-bold">

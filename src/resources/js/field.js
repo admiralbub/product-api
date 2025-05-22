@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const deliver = document.querySelector('#deliver');
+    const deliveryRadios = document.querySelectorAll('input[name="deliver"]');
     const np_city_input = document.querySelector('#np_city_input');
 
     const ukr_post_city = document.querySelector('#ukr_post_city');
@@ -27,186 +27,190 @@ document.addEventListener("DOMContentLoaded", function() {
     
 
 
-    if(deliver) {
-        deliver.addEventListener("change", () => {
-            const deliverValue = deliver.value;
-            switch(deliverValue) {
-                //Вкоючаем, и выключаем поля при выборе доставки через НП 
-                case "NP":
-                    document.querySelector('#ukr_post_warehouse_block').classList.add('d-none');
-                    document.querySelector('#ukr_post_city_block').classList.add('d-none');
-                    document.querySelector('#np_city_block').classList.remove('d-none');
-                    document.querySelector('#np_warehouse_block').classList.remove('d-none');
+    if(deliveryRadios) {
 
-                    document.querySelector('#np_self_address_block').classList.add('d-none');
-                    document.querySelector('#np_courier_warehouse_block').classList.add('d-none');
+        deliveryRadios.forEach(radio => {
+            radio.addEventListener("change", () => {
+                const deliverValue = radio.value;
+                switch (deliverValue) {
+                    case "NP":
+                      
+                        document.querySelector('#ukr_post_warehouse_block').classList.add('d-none');
+                        document.querySelector('#ukr_post_city_block').classList.add('d-none');
+                        document.querySelector('#np_city_block').classList.remove('d-none');
+                        document.querySelector('#np_warehouse_block').classList.remove('d-none');
 
-
-                    //Активируем вадидация для поля города НП
-                    document.querySelector('#np_city_input').setAttribute("data-require", "true");
-                    document.querySelector('#np_city_input').setAttribute("data-max", "255");
-
-                    //Активируем вадидация для поля Отделений НП
-                    document.querySelector('#warehouse_input').setAttribute("data-require", "true");
-                    document.querySelector('#warehouse_input').setAttribute("data-max", "255");
-
-                    //Деактивируем валидацию из других полей
-                    document.querySelector('#np_self_address_input').removeAttribute("data-require", "true");
-                    document.querySelector('#np_self_address_input').removeAttribute("data-max", "255");
-
-                    document.querySelector('#np_courier_warehouse_block').removeAttribute("data-require", "true");
-                    document.querySelector('#np_courier_warehouse_block').removeAttribute("data-max", "255");
-
-                    
-                    document.querySelector('#ukr_post_city').removeAttribute("data-require", "true");
-                    document.querySelector('#ukr_post_city').removeAttribute("data-max", "255");
-                    document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-require", "true");
-                    document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-max", "255");
+                        document.querySelector('#np_self_address_block').classList.add('d-none');
+                        document.querySelector('#np_courier_warehouse_block').classList.add('d-none');
 
 
+                        //Активируем вадидация для поля города НП
+                        document.querySelector('#np_city_input').setAttribute("data-require", "true");
+                        document.querySelector('#np_city_input').setAttribute("data-max", "255");
+
+                        //Активируем вадидация для поля Отделений НП
+                        document.querySelector('#warehouse_input').setAttribute("data-require", "true");
+                        document.querySelector('#warehouse_input').setAttribute("data-max", "255");
+
+                        //Деактивируем валидацию из других полей
+                        document.querySelector('#np_self_address_input').removeAttribute("data-require", "true");
+                        document.querySelector('#np_self_address_input').removeAttribute("data-max", "255");
+
+                        document.querySelector('#np_courier_warehouse_block').removeAttribute("data-require", "true");
+                        document.querySelector('#np_courier_warehouse_block').removeAttribute("data-max", "255");
+
+                        
+                        document.querySelector('#ukr_post_city').removeAttribute("data-require", "true");
+                        document.querySelector('#ukr_post_city').removeAttribute("data-max", "255");
+                        document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-require", "true");
+                        document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-max", "255");
+                      //  document.querySelector('#np_warehouse_block')?.scrollIntoView({ behavior: 'smooth' });
+                        break;
+                    case "NP_COURIER":
+                        document.querySelector('#ukr_post_warehouse_block').classList.add('d-none');
+                        document.querySelector('#ukr_post_city_block').classList.add('d-none');
+                        document.querySelector('#np_city_block').classList.remove('d-none');
+                        document.querySelector('#np_courier_warehouse_block').classList.remove('d-none');
+                        document.querySelector('#np_warehouse_block').classList.add('d-none');
+                        document.querySelector('#np_self_address_block').classList.add('d-none');
+
+                        //document.querySelector('#np_city_block')?.scrollIntoView({ behavior: 'smooth' });
+        
+                        //Активируем вадидация для поля города НП при выборе курьера
+                        document.querySelector('#np_city_input').setAttribute("data-require", "true");
+                        document.querySelector('#np_city_input').setAttribute("data-max", "255");
+        
+                        //Активируем вадидация для поля Адрес курьер НП
+                        document.querySelector('#np_courier_address').setAttribute("data-require", "true");
+                        document.querySelector('#np_courier_address').setAttribute("data-max", "255");
+        
+                        //Деактивируем валидацию из других полей
+                        document.querySelector('#warehouse_input').removeAttribute("data-require", "true");
+                        document.querySelector('#warehouse_input').removeAttribute("data-max", "255");
+        
+                        document.querySelector('#np_self_address_input').removeAttribute("data-require", "true");
+                        document.querySelector('#np_self_address_input').removeAttribute("data-max", "255");
+                            
+        
+                            
+                        document.querySelector('#ukr_post_city').removeAttribute("data-require", "true");
+                        document.querySelector('#ukr_post_city').removeAttribute("data-max", "255");
+                        document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-require", "true");
+                        document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-max", "255");
+        
+        
+                         break;
+                    //Вкоючаем, и выключаем поля при выборе доставки через НП Отделения
+                    case "WAREHOUSE_REMOVAL":
+                        document.querySelector('#ukr_post_warehouse_block').classList.add('d-none');
+                        document.querySelector('#ukr_post_city_block').classList.add('d-none');
+                        document.querySelector('#np_city_block').classList.add('d-none');
+                        document.querySelector('#np_courier_warehouse_block').classList.add('d-none');
+                        document.querySelector('#np_warehouse_block').classList.add('d-none');
+                        document.querySelector('#np_self_address_block').classList.add('d-none');
+        
+                        //Деактивируем валидацию из других полей
+                        document.querySelector('#warehouse_input').removeAttribute("data-require", "true");
+                        document.querySelector('#warehouse_input').removeAttribute("data-max", "255");
+        
+                        document.querySelector('#np_self_address_input').removeAttribute("data-require", "true");
+                        document.querySelector('#np_self_address_input').removeAttribute("data-max", "255");
+        
+                        document.querySelector('#np_city_input').removeAttribute("data-require", "true");
+                        document.querySelector('#np_city_input').removeAttribute("data-max", "255");
+        
+                        document.querySelector('#np_courier_address').removeAttribute("data-require", "true");
+                        document.querySelector('#np_courier_address').removeAttribute("data-max", "255");
+        
+                            
+                        document.querySelector('#ukr_post_city').removeAttribute("data-require", "true");
+                        document.querySelector('#ukr_post_city').removeAttribute("data-max", "255");
+                        document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-require", "true");
+                        document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-max", "255");
+        
+                            
+                        break;
+                    case "SELF_DELIVERY":
+                        document.querySelector('#ukr_post_warehouse_block').classList.add('d-none');
+                        document.querySelector('#ukr_post_city_block').classList.add('d-none');
+        
+                        document.querySelector('#np_city_block').classList.add('d-none');
+                        document.querySelector('#np_courier_warehouse_block').classList.add('d-none');
+                        document.querySelector('#np_warehouse_block').classList.add('d-none');
+                        document.querySelector('#np_self_address_block').classList.remove('d-none');
+                            
+                        //document.querySelector('#np_self_address_block')?.scrollIntoView({ behavior: 'smooth' });    
+                        //Активируем валидацию для поле доставки адреса по городу
+        
+                        document.querySelector('#np_self_address_input').setAttribute("data-require", "true");
+                        document.querySelector('#np_self_address_input').setAttribute("data-max", "255");
+        
+                        //Деактивируем валидацию из других полей
+                        document.querySelector('#warehouse_input').removeAttribute("data-require", "true");
+                        document.querySelector('#warehouse_input').removeAttribute("data-max", "255");
+         
+                        document.querySelector('#np_city_input').removeAttribute("data-require", "true");
+                        document.querySelector('#np_city_input').removeAttribute("data-max", "255");
+         
+                        document.querySelector('#np_courier_address').removeAttribute("data-require", "true");
+                        document.querySelector('#np_courier_address').removeAttribute("data-max", "255");
+        
+                        document.querySelector('#ukr_post_city').removeAttribute("data-require", "true");
+                        document.querySelector('#ukr_post_city').removeAttribute("data-max", "255");
+                        document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-require", "true");
+                        document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-max", "255");
+          
+        
+                        break;
+                    case "UKRPOSHTA": 
+                        document.querySelector('#np_city_block').classList.add('d-none');
+                        document.querySelector('#np_courier_warehouse_block').classList.add('d-none');
+                        document.querySelector('#np_warehouse_block').classList.add('d-none');
+                        document.querySelector('#np_self_address_block').classList.add('d-none');
+        
+                        document.querySelector('#ukr_post_city_block').classList.remove('d-none');
+                        document.querySelector('#ukr_post_warehouse_block').classList.remove('d-none');
+                        
+                       // document.querySelector('#ukr_post_city_block')?.scrollIntoView({ behavior: 'smooth' });   
+                        //Активируем вадидация для поля города  при выборе Укрпочты
+                        document.querySelector('#ukr_post_city').setAttribute("data-require", "true");
+                        document.querySelector('#ukr_post_city').setAttribute("data-max", "255");
+        
+                        //Активируем вадидация для поля отделения Укрпочты
+                        document.querySelector('#ukr_post_warehouse_input').setAttribute("data-require", "true");
+                        document.querySelector('#ukr_post_warehouse_input').setAttribute("data-max", "255");
+        
+        
+        
+                        //Деактивируем валидацию из других полей
+                        document.querySelector('#np_city_input').removeAttribute("data-require", "true");
+                        document.querySelector('#np_city_input').removeAttribute("data-max", "255");
+                        document.querySelector('#warehouse_input').removeAttribute("data-require", "true");
+                        document.querySelector('#warehouse_input').removeAttribute("data-max", "255");
+         
+                        document.querySelector('#np_self_address_input').removeAttribute("data-require", "true");
+                        document.querySelector('#np_self_address_input').removeAttribute("data-max", "255");
+         
+                        document.querySelector('#np_courier_warehouse_block').removeAttribute("data-require", "true");
+                        document.querySelector('#np_courier_warehouse_block').removeAttribute("data-max", "255");
                     break;
-                //Вкоючаем, и выключаем поля при выборе доставки через НП Курьер
-                case "NP_COURIER":
-                    document.querySelector('#ukr_post_warehouse_block').classList.add('d-none');
-                    document.querySelector('#ukr_post_city_block').classList.add('d-none');
-                    document.querySelector('#np_city_block').classList.remove('d-none');
-                    document.querySelector('#np_courier_warehouse_block').classList.remove('d-none');
-                    document.querySelector('#np_warehouse_block').classList.add('d-none');
-                    document.querySelector('#np_self_address_block').classList.add('d-none');
+        
+                    case "":
+                        document.querySelector('#np_city_block').classList.add('d-none');
+                        document.querySelector('#np_courier_warehouse_block').classList.add('d-none');
+                        document.querySelector('#np_warehouse_block').classList.add('d-none');
+                        document.querySelector('#np_self_address_block').classList.add('d-none');
+        
+                        document.querySelector('#ukr_post_city_block').classList.add('d-none');
+        
+                        document.querySelector('#ukr_post_city_block').classList.add('d-none');
+                        document.querySelector('#ukr_post_warehouse_block').classList.add('d-none');
+                            
+                        break;
+                }
+            });
+        });
 
-                    //Активируем вадидация для поля города НП при выборе курьера
-                    document.querySelector('#np_city_input').setAttribute("data-require", "true");
-                    document.querySelector('#np_city_input').setAttribute("data-max", "255");
-
-                    //Активируем вадидация для поля Адрес курьер НП
-                    document.querySelector('#np_courier_address').setAttribute("data-require", "true");
-                    document.querySelector('#np_courier_address').setAttribute("data-max", "255");
-
-                    //Деактивируем валидацию из других полей
-                    document.querySelector('#warehouse_input').removeAttribute("data-require", "true");
-                    document.querySelector('#warehouse_input').removeAttribute("data-max", "255");
-
-                    document.querySelector('#np_self_address_input').removeAttribute("data-require", "true");
-                    document.querySelector('#np_self_address_input').removeAttribute("data-max", "255");
-                    
-
-                    
-                    document.querySelector('#ukr_post_city').removeAttribute("data-require", "true");
-                    document.querySelector('#ukr_post_city').removeAttribute("data-max", "255");
-                    document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-require", "true");
-                    document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-max", "255");
-
-
-                    break;
-                //Вкоючаем, и выключаем поля при выборе доставки через НП Отделения
-                case "WAREHOUSE_REMOVAL":
-                    document.querySelector('#ukr_post_warehouse_block').classList.add('d-none');
-                    document.querySelector('#ukr_post_city_block').classList.add('d-none');
-                    document.querySelector('#np_city_block').classList.add('d-none');
-                    document.querySelector('#np_courier_warehouse_block').classList.add('d-none');
-                    document.querySelector('#np_warehouse_block').classList.add('d-none');
-                    document.querySelector('#np_self_address_block').classList.add('d-none');
-
-                    //Деактивируем валидацию из других полей
-                    document.querySelector('#warehouse_input').removeAttribute("data-require", "true");
-                    document.querySelector('#warehouse_input').removeAttribute("data-max", "255");
-
-                    document.querySelector('#np_self_address_input').removeAttribute("data-require", "true");
-                    document.querySelector('#np_self_address_input').removeAttribute("data-max", "255");
-
-                    document.querySelector('#np_city_input').removeAttribute("data-require", "true");
-                    document.querySelector('#np_city_input').removeAttribute("data-max", "255");
-
-                    document.querySelector('#np_courier_address').removeAttribute("data-require", "true");
-                    document.querySelector('#np_courier_address').removeAttribute("data-max", "255");
-
-                    
-                    document.querySelector('#ukr_post_city').removeAttribute("data-require", "true");
-                    document.querySelector('#ukr_post_city').removeAttribute("data-max", "255");
-                    document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-require", "true");
-                    document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-max", "255");
-
-                    
-                    break;
-                case "SELF_DELIVERY":
-                    document.querySelector('#ukr_post_warehouse_block').classList.add('d-none');
-                    document.querySelector('#ukr_post_city_block').classList.add('d-none');
-
-                    document.querySelector('#np_city_block').classList.add('d-none');
-                    document.querySelector('#np_courier_warehouse_block').classList.add('d-none');
-                    document.querySelector('#np_warehouse_block').classList.add('d-none');
-                    document.querySelector('#np_self_address_block').classList.remove('d-none');
-                    
-                    
-                    //Активируем валидацию для поле доставки адреса по городу
-
-                    document.querySelector('#np_self_address_input').setAttribute("data-require", "true");
-                    document.querySelector('#np_self_address_input').setAttribute("data-max", "255");
-
-                     //Деактивируем валидацию из других полей
-                    document.querySelector('#warehouse_input').removeAttribute("data-require", "true");
-                    document.querySelector('#warehouse_input').removeAttribute("data-max", "255");
- 
-                    document.querySelector('#np_city_input').removeAttribute("data-require", "true");
-                    document.querySelector('#np_city_input').removeAttribute("data-max", "255");
- 
-                    document.querySelector('#np_courier_address').removeAttribute("data-require", "true");
-                    document.querySelector('#np_courier_address').removeAttribute("data-max", "255");
-
-                    document.querySelector('#ukr_post_city').removeAttribute("data-require", "true");
-                    document.querySelector('#ukr_post_city').removeAttribute("data-max", "255");
-                    document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-require", "true");
-                    document.querySelector('#ukr_post_warehouse_input').removeAttribute("data-max", "255");
-  
-
-                    break;
-                case "UKRPOSHTA": 
-                    document.querySelector('#np_city_block').classList.add('d-none');
-                    document.querySelector('#np_courier_warehouse_block').classList.add('d-none');
-                    document.querySelector('#np_warehouse_block').classList.add('d-none');
-                    document.querySelector('#np_self_address_block').classList.add('d-none');
-
-                    document.querySelector('#ukr_post_city_block').classList.remove('d-none');
-                    document.querySelector('#ukr_post_warehouse_block').classList.remove('d-none');
-                
-
-                    //Активируем вадидация для поля города  при выборе Укрпочты
-                    document.querySelector('#ukr_post_city').setAttribute("data-require", "true");
-                    document.querySelector('#ukr_post_city').setAttribute("data-max", "255");
-
-                    //Активируем вадидация для поля отделения Укрпочты
-                    document.querySelector('#ukr_post_warehouse_input').setAttribute("data-require", "true");
-                    document.querySelector('#ukr_post_warehouse_input').setAttribute("data-max", "255");
-
-
-
-                    //Деактивируем валидацию из других полей
-                    document.querySelector('#np_city_input').removeAttribute("data-require", "true");
-                    document.querySelector('#np_city_input').removeAttribute("data-max", "255");
-                    document.querySelector('#warehouse_input').removeAttribute("data-require", "true");
-                    document.querySelector('#warehouse_input').removeAttribute("data-max", "255");
- 
-                    document.querySelector('#np_self_address_input').removeAttribute("data-require", "true");
-                    document.querySelector('#np_self_address_input').removeAttribute("data-max", "255");
- 
-                    document.querySelector('#np_courier_warehouse_block').removeAttribute("data-require", "true");
-                    document.querySelector('#np_courier_warehouse_block').removeAttribute("data-max", "255");
-                break;
-
-                case "":
-                    document.querySelector('#np_city_block').classList.add('d-none');
-                    document.querySelector('#np_courier_warehouse_block').classList.add('d-none');
-                    document.querySelector('#np_warehouse_block').classList.add('d-none');
-                    document.querySelector('#np_self_address_block').classList.add('d-none');
-
-                    document.querySelector('#ukr_post_city_block').classList.add('d-none');
-
-                    document.querySelector('#ukr_post_city_block').classList.add('d-none');
-                    document.querySelector('#ukr_post_warehouse_block').classList.add('d-none');
-                    
-                    break;
-            }
-        })
     }
     if(ukr_post_city) {
         resusltCityUkrPost.onclick =  function(event) {
@@ -429,79 +433,81 @@ document.addEventListener("DOMContentLoaded", function() {
        
     }
 
-    const pay_method = document.querySelector('#pay_method');
+
+
+    const pay_method = document.querySelectorAll('input[name="pay"]');
     if(pay_method) {
-        pay_method.addEventListener("change", () => {
-            const payMethodValue = pay_method.value;
-            switch(payMethodValue) {
-                //Включаем, и выключаем блок при выборе оплаты частями
-                case "INSTALLMENT_PRIVATBANK":
-                    document.querySelector('#privatbank_installment_block').classList.remove('d-none');
-                    document.querySelector('#block_legal_acount').classList.add('d-none');
-                    document.querySelector('#block_individual_acount').classList.add('d-none');
+        pay_method.forEach(radio => {
+            radio.addEventListener("change", () => {
+                const pay = radio.value;
+                switch (pay) {
+                    case "INSTALLMENT_PRIVATBANK":
+                        document.querySelector('#privatbank_installment_block').classList.remove('d-none');
+                        document.querySelector('#block_legal_acount').classList.add('d-none');
+                        document.querySelector('#block_individual_acount').classList.add('d-none');
+    
+    
+                        
+                        document.querySelector('#edrpu_legal').removeAttribute("data-require", "true");
+                        document.querySelector('#full_name_legal').removeAttribute("data-require", "true");
+                        document.querySelector('#fullName_acount').removeAttribute("data-require", "true");
+                        document.querySelector('#tin_acount').removeAttribute("data-require", "true");
 
+                        document.querySelector('#privatbank_installment_block')?.scrollIntoView({ behavior: 'smooth' });
+                        
+                        break;
+                    case "RECEIPT_OF_GOODS":
+                        document.querySelector('#privatbank_installment_block').classList.add('d-none');
+                        document.querySelector('#block_legal_acount').classList.add('d-none');
+                        document.querySelector('#block_individual_acount').classList.add('d-none');
+        
+                        document.querySelector('#edrpu_legal').removeAttribute("data-require", "true");
+                        document.querySelector('#full_name_legal').removeAttribute("data-require", "true");
+                        document.querySelector('#fullName_acount').removeAttribute("data-require", "true");
+                        document.querySelector('#tin_acount').removeAttribute("data-require", "true");
+        
+                        break;
+                    case "LIQPAY":
+                        document.querySelector('#privatbank_installment_block').classList.add('d-none');
+                        document.querySelector('#block_legal_acount').classList.add('d-none');
+                        document.querySelector('#block_individual_acount').classList.add('d-none');
 
+                        document.querySelector('#edrpu_legal').removeAttribute("data-require", "true");
+                        document.querySelector('#full_name_legal').removeAttribute("data-require", "true");
+                        document.querySelector('#fullName_acount').removeAttribute("data-require", "true");
+                        document.querySelector('#tin_acount').removeAttribute("data-require", "true");
+
+                        break;
+                    case "LEGAL_ACCOUNT_CURRENT":
+                        document.querySelector('#block_legal_acount').classList.remove('d-none');
+                        document.querySelector('#privatbank_installment_block').classList.add('d-none');
+                        document.querySelector('#block_individual_acount').classList.add('d-none');
+
+                        document.querySelector('#block_legal_acount')?.scrollIntoView({ behavior: 'smooth' });
+    
+                        document.querySelector('#edrpu_legal').setAttribute("data-require", "true");
+                        document.querySelector('#full_name_legal').setAttribute("data-require", "true");
+    
+                        document.querySelector('#fullName_acount').removeAttribute("data-require", "true");
+                        document.querySelector('#tin_acount').removeAttribute("data-require", "true");
+                        break;
+                    case "INDIVIDUALS_ACCOUNT_CURRENT":
+                        document.querySelector('#block_individual_acount').classList.remove('d-none');
+                        document.querySelector('#privatbank_installment_block').classList.add('d-none');
+                        document.querySelector('#block_legal_acount').classList.add('d-none');
+                        document.querySelector('#block_individual_acount')?.scrollIntoView({ behavior: 'smooth' });
+
+                        document.querySelector('#fullName_acount').setAttribute("data-require", "true");
+                        document.querySelector('#tin_acount').setAttribute("data-require", "true");
+                        document.querySelector('#edrpu_legal').removeAttribute("data-require", "true");
+                        document.querySelector('#full_name_legal').removeAttribute("data-require", "true");
+                        break;
                     
-                    document.querySelector('#edrpu_legal').removeAttribute("data-require", "true");
-                    document.querySelector('#full_name_legal').removeAttribute("data-require", "true");
-                    document.querySelector('#fullName_acount').removeAttribute("data-require", "true");
-                    document.querySelector('#tin_acount').removeAttribute("data-require", "true");
-                    
-                    break;
-                //Включаем, и выключаем блок при выборе оплаты при получение товара
-                case "RECEIPT_OF_GOODS":
-                    document.querySelector('#privatbank_installment_block').classList.add('d-none');
-                    document.querySelector('#block_legal_acount').classList.add('d-none');
-                    document.querySelector('#block_individual_acount').classList.add('d-none');
-
-                    document.querySelector('#edrpu_legal').removeAttribute("data-require", "true");
-                    document.querySelector('#full_name_legal').removeAttribute("data-require", "true");
-                    document.querySelector('#fullName_acount').removeAttribute("data-require", "true");
-                    document.querySelector('#tin_acount').removeAttribute("data-require", "true");
-
-                    break;
-                //Включаем, и выключаем блок при выборе оплаты Liqpay
-                case "LIQPAY":
-                    document.querySelector('#privatbank_installment_block').classList.add('d-none');
-                    document.querySelector('#block_legal_acount').classList.add('d-none');
-                    document.querySelector('#block_individual_acount').classList.add('d-none');
-
-                    document.querySelector('#edrpu_legal').removeAttribute("data-require", "true");
-                    document.querySelector('#full_name_legal').removeAttribute("data-require", "true");
-                    document.querySelector('#fullName_acount').removeAttribute("data-require", "true");
-                    document.querySelector('#tin_acount').removeAttribute("data-require", "true");
-
-                    break;
-                case "LEGAL_ACCOUNT_CURRENT":
-                    document.querySelector('#block_legal_acount').classList.remove('d-none');
-                    document.querySelector('#privatbank_installment_block').classList.add('d-none');
-                    document.querySelector('#block_individual_acount').classList.add('d-none');
-
-                    document.querySelector('#edrpu_legal').setAttribute("data-require", "true");
-                    document.querySelector('#full_name_legal').setAttribute("data-require", "true");
-
-                    document.querySelector('#fullName_acount').removeAttribute("data-require", "true");
-                    document.querySelector('#tin_acount').removeAttribute("data-require", "true");
+                }
+            });
+        });
 
 
-                    break;
-                case "INDIVIDUALS_ACCOUNT_CURRENT":
-                    document.querySelector('#block_individual_acount').classList.remove('d-none');
-                    document.querySelector('#privatbank_installment_block').classList.add('d-none');
-                    document.querySelector('#block_legal_acount').classList.add('d-none');
-
-
-                    document.querySelector('#fullName_acount').setAttribute("data-require", "true");
-                    document.querySelector('#tin_acount').setAttribute("data-require", "true");
-                    document.querySelector('#edrpu_legal').removeAttribute("data-require", "true");
-                    document.querySelector('#full_name_legal').removeAttribute("data-require", "true");
-
-
-
-                    break;
-
-            }
-        })
     }
     document.querySelectorAll('input[type="radio"][data-group="credit"]').forEach(radio => {
         radio.addEventListener('change', function() {

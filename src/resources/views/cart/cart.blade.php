@@ -91,21 +91,27 @@
                                 </div>
                             </div>    
                             <div class="mt-3 row mb-3">
-                                <label for="Deliver" class="col-sm-4 col-form-label font-size-xs text-uppercase font-weight-medium text-dark text-ls mb-0">{{__('Carrier')}}</label>
-                                <div class="col-sm-8">
-                                    <select class="form-select"  data-require="true" name="deliver" id="deliver">
-                                        <option value="">---</option>
-                                        @foreach($delivers as $deliver)
-                                            <option value="{{$deliver->type->name}}">{{$deliver->name}}</option>
-                                        @endforeach
+                                <div class="order-options">
+                                    @foreach($delivers as $deliver)
+                                        <div class="order-options__item">
+                                            <input type="radio" value="{{$deliver->type->name}}" id="deliver" name="deliver" class="order-options__item__radio">
+                                            <label class="order-options__item__content w-100">
+                                                <div class="order-options__item__content-header">
+                                                    <h6 class="order-options__item__content-header-title">{{$deliver->name}}</h6>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    @endforeach
                                         
-                                    </select>
                                 </div>
+
+                                
                             </div>
                             @if($deliverTypes->intersect([1, 2])->isNotEmpty())
+                                
                                 <div class="mt-3 row mb-3 d-none" id="np_city_block">
                                     <label for="Deliver" class="col-sm-4 col-form-label font-size-xs text-uppercase font-weight-medium text-dark text-ls mb-0">{{__('City')}}</label>
-                                    <div class="col-sm-8 position-relative">
+                                    <div class=" position-relative">
                                         <input type="text" placeholder="{{__('Write and select a city')}}" class="form-control position-relative" id="np_city_input" name="city_np">
                                         <input type="text" id="city_ref_np" name="city_ref_np" hidden>
                                         <div class="close_input position-absolute" id="clear_city_np">&times;</div>
@@ -119,7 +125,7 @@
                             @if($deliverTypes->contains(1))
                                 <div class="mt-3 row mb-3 d-none" id="np_warehouse_block">
                                     <label for="Deliver" class="col-sm-4 col-form-label font-size-xs text-uppercase font-weight-medium text-dark text-ls mb-0">{{__('Warehouse')}}</label>
-                                    <div class="col-sm-8 position-relative">
+                                    <div class=" position-relative">
                                         <input type="text" placeholder="{{__('All branches')}}" class="form-control" id="warehouse_input" name="warehouse_np" value="" readonly>
                                         <input type="text" id="warehouse_ref_np" name="warehouse_ref_np" value="" hidden>
                                         <div class="close_input position-absolute" id="clear_warehouse_np">&times;</div>
@@ -133,7 +139,7 @@
                             @if($deliverTypes->contains(2))
                                 <div class="mt-3 row mb-3 d-none" id="np_courier_warehouse_block">
                                     <label for="Deliver" class="col-sm-4 col-form-label font-size-xs text-uppercase font-weight-medium text-dark text-ls mb-0">{{__('Address')}}</label>
-                                    <div class="col-sm-8 position-relative">
+                                    <div class=" position-relative">
                                         <input type="text" placeholder="" class="form-control" id="np_courier_address" name="np_courier_address" value="">
                                     </div>
                                 </div>
@@ -142,7 +148,7 @@
                             @if($deliverTypes->contains(4))
                                 <div class="mt-3 row mb-3 d-none" id="np_self_address_block">
                                     <label for="Deliver" class="col-sm-4 col-form-label font-size-xs text-uppercase font-weight-medium text-dark text-ls mb-0">{{__('Address')}}</label>
-                                    <div class="col-sm-8 position-relative">
+                                    <div class=" position-relative">
                                         <input type="text" data-require="true" data-max="256" placeholder="" class="form-control" id="np_self_address_input" name="np_self_address" value="">
                                     </div>
                                 </div>
@@ -151,7 +157,7 @@
                             @if($deliverTypes->contains(5))
                                 <div class="mt-3 row mb-3 d-none" id="ukr_post_city_block">
                                     <label for="Deliver" class="col-sm-4 col-form-label font-size-xs text-uppercase font-weight-medium text-dark text-ls mb-0">{{__('Population point')}}</label>
-                                    <div class="col-sm-8 position-relative">
+                                    <div class=" position-relative">
                                         <input type="text" data-require="true" data-max="256" placeholder="" class="form-control" id="ukr_post_city" name="ukr_post_city" value="">
                                         <input type="text" id="ukr_post_id_city" name="ukr_post_id_city" value="" hidden>
                                         <div class="resusltInput position-absolute bg-light py-3 px-2 z-3 d-none resusltCityUkrPost">
@@ -163,7 +169,7 @@
                                 <div class="mt-3 row mb-3 d-none" id="ukr_post_warehouse_block">
                                     <label for="Deliver" class="col-sm-4 col-form-label font-size-xs text-uppercase font-weight-medium text-dark text-ls mb-0">{{__('Warehouse')}}</label>
                                     <input type="text" id="ukr_post_id_warehouse" name="ukr_post_id_warehouse" value="" hidden>
-                                    <div class="col-sm-8 position-relative">
+                                    <div class=" position-relative">
                                         <input type="text" data-require="true" data-max="256" placeholder="" class="form-control" id="ukr_post_warehouse_input" name="ukr_post_warehouse" value="" readonly>
                                         <input type="text" id="ukr_post_post_code" name="ukr_post_post_code" value="" hidden>
                                         <div class="resusltInput position-absolute bg-light py-3 px-2 z-3 d-none resusWarehouseUkrPost">
@@ -184,15 +190,24 @@
                                 </div>
                             </div>    
                             <div class="mt-3 row mb-3">
-                                <label for="Deliver" class="col-sm-4 col-form-label font-size-xs text-uppercase font-weight-medium text-dark text-ls mb-0">{{__('Payment method')}}</label>
-                                <div class="col-sm-8">
-                                    <select class="form-select" aria-label="Default select example" data-require="true" name="pay" id="pay_method">
-                                        @foreach($payMethods as $payMethod)
-                                            <option value="{{$payMethod->type->name}}">{{$payMethod->name}}</option>
-                                        @endforeach
-                                    
-                                    </select>
+                            @foreach($payMethods as $index => $payMethod)
+                                <div class="order-options__item">
+                                    <input 
+                                        type="radio" 
+                                        value="{{$payMethod->type->name}}" 
+                                        id="pay_{{$index}}" 
+                                        name="pay" 
+                                        class="order-options__item__radio" 
+                              
+                                    >
+                                    <label for="pay_{{$index}}" class="order-options__item__content w-100">
+                                        <div class="order-options__item__content-header">
+                                            <h6 class="order-options__item__content-header-title">{{$payMethod->name}}</h6>
+                                        </div>
+                                    </label>
                                 </div>
+                            @endforeach
+                               
                             </div>
                             @if($paymentTypes->contains(2))
                                

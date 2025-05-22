@@ -57,7 +57,9 @@
     overflow: hidden;
     margin-bottom: 2rem;
     padding-bottom: 2rem;
-  
+    & ul,li {
+        list-style: inherit;
+    }
     .featured-image {
         margin-bottom: 1.5rem;
         overflow: hidden;
@@ -104,12 +106,11 @@
     .post-title {
         font-size: 2.2rem;
         font-weight: 700;
-        margin-left: 1.5rem;
-        margin-right: 1.5rem;
+
     }
   
     .post-content {
-        padding: 0 1.5rem;
+ 
         color:var(--color-block);
         p {
             margin-bottom: 1.5rem;

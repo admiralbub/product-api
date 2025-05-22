@@ -2,7 +2,7 @@
     'h1',
     'breadcrumbs'
 ])
-<section class="shop-hero">
+<section class="shop-hero" style="background: url({{settings('featured_fon')}}) center center / cover no-repeat;">
     <div class="overlay"></div>
 
     <div class="container text-center">

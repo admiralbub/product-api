@@ -14,7 +14,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class ProductService implements ProductInterface {
     public const PAGE_COUNT = 22;
     public function showProduct($slug) : Product {
-        return Product::where('slug',$slug)->first();
+        return Product::where('slug',$slug)->firstOrFail();
     }
     public function attrProductShow($product) {
         $list_attr=array();

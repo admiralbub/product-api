@@ -49,7 +49,7 @@
         <div class="scrollable-options">
             @foreach($brands as $brand)
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="brand" value="{{filterUrlAttr(\Request::url(),$brand->id,'brand')}}" {{isset($selectedFilter["brand"]) ? in_array($brand->id,$selectedFilter["brand"] ) ? 'checked' : "" : ""}}>
+                    <input class="form-check-input filter_brand_check" type="checkbox" name="brand" value="{{filterUrlAttr(\Request::url(),$brand->id,'brand')}}" {{isset($selectedFilter["brand"]) ? in_array($brand->id,$selectedFilter["brand"] ) ? 'checked' : "" : ""}}>
                     <label class="form-check-label" for="basf">
                         <a href="{{filterUrlAttr(\Request::url(),$brand->id,'brand')}}" class="text-secondary">{{$brand->name}}</a>
                     </label>

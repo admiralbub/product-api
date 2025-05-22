@@ -20,10 +20,19 @@
                     </div>
                     
                     <!-- Author Info -->
-                    <div class="post-meta d-flex align-items-center">
+                    <div class="post-meta d-flex align-items-center mb-3">
                         <div class="author">
-                            <i class="bi bi-person-fill"></i> 
-                            <a href="{{route('blogs.author',['id'=>$blog->author->id])}}">{{$blog->author->name}}</a>
+                            @if ($blog->author)
+                                <a href="{{route('blogs.author',['id'=>$blog->author->id])}}">
+                                    <i class="bi bi-person-fill me-1"></i>
+                                    {{$blog->author->name}}
+                                </a>
+
+                            @else
+                                <i class="bi bi-person-fill me-1"></i>
+                                {{__('Author unknown')}}
+
+                            @endif    
                         </div>
                         <div class="comments ms-4">
                             <i class="bi bi-chat-fill"></i> {{$blog->comment->count()}}
@@ -31,9 +40,9 @@
                     </div>
                     
                     <!-- Post Title -->
-                    <span class="post-title py-3">{{$blog->h1_parsed ? $blog->h1_parsed : $blog->h1}}</span>
+                    <span class="post-title  pt-3">{{$blog->h1_parsed ? $blog->h1_parsed : $blog->h1}}</span>
                     <!-- Post Content -->
-                    <div class="post-content">
+                    <div class="post-content mt-3">
                         {!! $blog->description !!}
                     </div>
                 </div>

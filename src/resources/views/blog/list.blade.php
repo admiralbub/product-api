@@ -11,7 +11,7 @@
     <div class="container">
         <div class="mt-3 mb-5">
 
-            <div class="news-section mt-4">
+            <div class="row news-section mt-4">
                 @if(count($blogs))
                     @foreach($blogs as $blog)
                         <x-post.post :blog="$blog"/>
